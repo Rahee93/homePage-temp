@@ -1,0 +1,28 @@
+.error-boundary-nopage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  background-color: #c0bad4;
+  .wrapper {
+    .image {
+      display: inline-block;
+      background-image: url("https://i.imgur.com/FOeYt4E.png");
+      background-size: cover;
+      background-position: center;
+      width: 40vh;
+      height: 40vh;
+    }
+
+    .title {
+      color: #754d48;
+    }
+
+    .description {
+      max-width: 550px;
+      // font-size: 16px;
+      color: #8a5853;
+      text-align: left;
+    }
+  }
+}

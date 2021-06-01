@@ -1,0 +1,160 @@
+{
+   "K2B": [
+      {
+         "Date": "2021-02-19",
+         "Max_temp": 30,
+         "Microbit_ID": 1,
+         "Min_temp": 5,
+         "Uptime": 5224
+      },
+      {
+         "Date": "2021-01-19",
+         "Max_temp": 30,
+         "Microbit_ID": 6,
+         "Min_temp": 5,
+         "Uptime": 5224
+      }
+   ],
+   "K2W": [
+      {
+         "Date": "2021-02-20",
+         "Max_temp": 24,
+         "Microbit_ID": 2,
+         "Min_temp": 4,
+         "Uptime": 5229
+      },
+      {
+         "Date": "2021-02-02",
+         "Max_temp": 28,
+         "Microbit_ID": 7,
+         "Min_temp": 4,
+         "Uptime": 5221
+      },
+      {
+         "Date": "2021-02-09",
+         "Max_temp": 32,
+         "Microbit_ID": 11,
+         "Min_temp": 10,
+         "Uptime": 5220
+      },
+      {
+         "Date": "2021-01-09",
+         "Max_temp": 10,
+         "Microbit_ID": 16,
+         "Min_temp": 0,
+         "Uptime": 5220
+      }
+   ],
+   "K2L": [
+      {
+         "Date": "2021-02-21",
+         "Max_temp": 26,
+         "Microbit_ID": 3,
+         "Min_temp": 1,
+         "Uptime": 5253
+      },
+      {
+         "Date": "2021-02-03",
+         "Max_temp": 26,
+         "Microbit_ID": 8,
+         "Min_temp": 6,
+         "Uptime": 5213
+      }
+   ],
+   "K2M": [
+      {
+         "Date": "2021-02-22",
+         "Max_temp": 26,
+         "Microbit_ID": 4,
+         "Min_temp": 3,
+         "Uptime": 5252
+      },
+      {
+         "Date": "2021-02-05",
+         "Max_temp": 26,
+         "Microbit_ID": 9,
+         "Min_temp": 8,
+         "Uptime": 5242
+      }
+   ],
+   "K2N": [
+      {
+         "Date": "2021-02-23",
+         "Max_temp": 27,
+         "Microbit_ID": 5,
+         "Min_temp": 3,
+         "Uptime": 5353
+      },
+      {
+         "Date": "2021-02-06",
+         "Max_temp": 29,
+         "Microbit_ID": 10,
+         "Min_temp": 3,
+         "Uptime": 5303
+      }
+   ],
+   "K2K": [
+      {
+         "Date": "2021-02-10",
+         "Max_temp": 20,
+         "Microbit_ID": 12,
+         "Min_temp": 1,
+         "Uptime": 5222
+      },
+      {
+         "Date": "2021-01-10",
+         "Max_temp": 32,
+         "Microbit_ID": 17,
+         "Min_temp": 17,
+         "Uptime": 5222
+      }
+   ],
+   "K2U": [
+      {
+         "Date": "2021-02-11",
+         "Max_temp": 22,
+         "Microbit_ID": 13,
+         "Min_temp": 3,
+         "Uptime": 5214
+      },
+      {
+         "Date": "2021-01-11",
+         "Max_temp": 16,
+         "Microbit_ID": 18,
+         "Min_temp": 2,
+         "Uptime": 5214
+      }
+   ],
+   "K2A": [
+      {
+         "Date": "2021-02-12",
+         "Max_temp": 20,
+         "Microbit_ID": 14,
+         "Min_temp": 8,
+         "Uptime": 5219
+      },
+      {
+         "Date": "2021-01-12",
+         "Max_temp": 19,
+         "Microbit_ID": 19,
+         "Min_temp": 3,
+         "Uptime": 5219
+      }
+   ],
+   "K2C": [
+      {
+         "Date": "2021-02-17",
+         "Max_temp": 29,
+         "Microbit_ID": 15,
+         "Min_temp": 5,
+         "Uptime": 5311
+      },
+      {
+         "Date": "2021-03-17",
+         "Max_temp": 33,
+         "Microbit_ID": 20,
+         "Min_temp": 15,
+         "Uptime": 5311
+      }
+   ]
+}

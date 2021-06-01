@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flash Your Micro:bit</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        function copyCode() {
+        var copyText = document.getElementById("script");
+
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /* For mobile devices */
+        document.execCommand("copy");}
+    </script>
+
+    <style>
+        body {
+        background-color: aliceblue;
+        }
+    </style>
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="home.html">Micro:bit</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Visualization
+              </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="Visualization.html">Map</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="linechart.html">Line chart</a>
+                    </div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="RetrieveTempData.html">Upload your Data</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="Firmware.html">Flash Your Micro:bit</a>
+                    </li>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <br>
+        <div class="text-center">
+            <h2>Follow the instructions below to flash Your Micro:bit with our temperature recorder!</h2>
+        </div>
+        <ol>
+        <li>
+            <p>
+            Start by Copying the Code below<br>
+            <textarea readonly id = "script" name = "scriptArea" rows = "10" cols = "91" >
+
+from microbit import *
+import machine
+
+name = "file"
+"""
+This script will be flashed to the microbit and used to write temperature data to our file
+"""
+
+
+def get_data():
+    """
+    Reads from the string file contaiing temperature values seperated by comma inside microbit and converts it into a list of temperature values
+    :return: A list of all temperature values stored in file
+    """
+    recordsLst = []
+    try:
+        with open(name) as file:
+            strData = file.read()
+            x = strData.split(',')
+            for a in x:
+                recordsLst.append(a)
+    except OSError:
+        return []
+    return recordsLst
+
+
+def set_data(recordsList):
+    """
+    used to replace the temperature values in the old file with the temperature values in the recordsList
+    :param recordsList: list of temperature readings stored as strings
+    :return: None
+    """
+    try:
+        with open(name, 'wt') as f:
+            for record in recordsList:
+                f.write(str(record) + ',')
+    except OSError:
+        display.scroll('Cannot write to file %s' % name)
+
+
+def main():
+    """
+    The main heart of the program that is run in an infinite while loop.
+    Used to record temperature and storing temperature values in a file inside microbit storage
+    :return: None
+    """
+    if accelerometer.was_gesture('shake'):
+        display.scroll(temperature())  # displays current temperature on microbit screen when shaked
+    if button_a.was_pressed():
+        lst = get_data()
+        for temp in lst:
+            uart.write(str(temp) + '\r\n')  # sends temperature readings to computer's serial port
+    if button_b.was_pressed():
+        display.scroll("Recording Started")
+        while True:
+            if running_time() % 86400000 == 0:  # After every 24 hours, record the temperature
+                lst = get_data()
+                lst.append(str(temperature()))
+                set_data(lst)
+            if button_a.was_pressed():  # If button a is pressed on the microbit
+                lst = get_data()        # sends temperature readings to computer's serial port
+                for temp in lst:
+                    uart.write(str(temp) + '\r\n')
+            if accelerometer.was_gesture('shake'):
+                display.scroll(temperature())  # displays current temperature on microbit screen when shaked
+
+
+while True:
+    main()
+
+
+            </textarea>
+            </p>
+            <button type="button" id="copy" name="copy" onclick="copyCode();"><img src="img/copy.png" /></button> Copy Code<br>
+        </li>
+        <br>
+        <li>
+            <p>Hit the link below to get redirected to Micro:bit's Python Environment
+            <br>
+                <a href = "https://python.microbit.org/v/2" target="_blank" >Python Editor</a></p>
+        </li>
+        <li>Replace any text with the copied code in the online editor</li>
+        <li>Connect Your Micro:bit to any usb port on your computer</li>
+        <li>Press the connect button at the top to connect your Micro:bit</li>
+        <li>Press the flash button to flash your Micro:bit</li>
+        <h2>Confirm your Micro:bit is flashed</h2>
+        <li>See this image on your Micro:bit?</li>
+            <img src="img/heart.png" />
+        <li>Shake your Micro:bit!</li>
+            <img src="img/temperature.png" /><br>
+            If you see a number on the screen, its your room temperature
+        <h2>Your Micro:bit is now ready to record temperature data</h2>
+        <li>Place your Micro:bit outside in a safe place with a power source </li>
+        <li>Press Button B on your Micro:bit to start recording Temperature</li>
+            <li>Keep your microbit for atleast 5 days to record meaningful data</li>
+        </ol>
+    </div>
+</body>
+</html>
