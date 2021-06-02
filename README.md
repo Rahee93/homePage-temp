@@ -1,6 +1,3 @@
-First version of Read Me 
-
-
 # CST8334 Team Codeck
 
 # Development Environment Setup
