@@ -1,0 +1,38 @@
+.GalleryPage {
+  width: 100%;
+  height: auto;
+  &-banner {
+    position: absolute;
+    left: 0;
+    background-image: linear-gradient(
+        to right bottom,
+        rgba(0, 174, 253, 0.6),
+        rgba(255, 184, 108, 0.6)
+      ),
+      url("https://www.northernontario.travel/sites/default/files/styles/cover_proportional/public/Terry%203_0.jpg?itok=ZTNbdfO0");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+
+    width: 100vw;
+    height: 500px;
+
+    &__title {
+      margin: auto;
+      font-size: 6rem;
+      color: #fff;
+      text-transform: uppercase;
+    }
+  }
+
+  &-content {
+    padding-top: 550px;
+    text-align: left;
+
+    img:hover {
+      transform: scale(1.1);
+    }
+  }
+}

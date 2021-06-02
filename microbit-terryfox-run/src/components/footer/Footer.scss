@@ -1,0 +1,31 @@
+.Footer {
+  background-color: yellowgreen;
+  height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // justify-content: space-between;
+  width: 100vw;
+  margin-top: 30px;
+  position: absolute;
+  left: 0;
+  font-size: 18px;
+  color: white;
+
+  // &-content {
+  // margin-left: 100px;
+  // }
+  // span {
+  //   padding: 0 20px;
+  //   font-size: 24px;
+  //   margin: 0 auto;
+  //   color: white;
+  // }
+}
+
+@media only screen and (max-width: 600px) {
+  .Footer {
+    font-size: 16px;
+    height: 70px;
+  }
+}

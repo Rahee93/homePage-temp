@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <style>
+        body {
+            background-color: aliceblue;
+        }
+    </style>
+
+    <title>Line Chart</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="home.html">Micro:bit</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="home.html">Home <span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Visualization
+            </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="Visualization.html">Map</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="linechart.html">Line chart</a>
+                    </div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="RetrieveTempData.html">Upload your Data</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="Firmware.html">Flash Your Micro:bit</a>
+                  </li>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <br>
+      <!-- update the display of line chart-->
+        <div class="chart-container" style="position: relative; height:40vh; width:80vw">
+        
+          <canvas id="myChart" ></canvas>
+        </div>
+
+
+        <canvas id="myChart" width="400" height="250"></canvas>
+
+        <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-analytics.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyDZD2IcDJn3aZ7v3CJ4HDh1_NRpPGcV8f8",
+        authDomain: "microbitdatavisualization.firebaseapp.com",
+        databaseURL:
+          "https://microbitdatavisualization-default-rtdb.firebaseio.com",
+        projectId: "microbitdatavisualization",
+        storageBucket: "microbitdatavisualization.appspot.com",
+        messagingSenderId: "148549104317",
+        appId: "1:148549104317:web:15c889eac8c44cca41bdd4",
+        measurementId: "G-26GSC30JQ9",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+
+
+
+      // retrieving data from firebase and generating a  line chart
+      const city = new Set();
+      let cityName=[]
+      const temperature=new Array();
+      var tem = firebase
+        .database()
+        .ref("locations/")
+               .once("value")
+        .then((snapshot) => {
+         
+          var temp = snapshot.val();
+         
+          temp.forEach((element)=>           
+            city.add(element.City)           
+          )          
+
+          let max=0;
+          let i=0;
+          for(let cityname of city){
+          
+            for(let mtemp of temp){
+
+              if(cityname== mtemp.City){
+
+                max=max+Number(mtemp.max_temp);
+               
+                i++;
+             
+
+              }             
+
+            }
+            cityName.push(cityname)
+            temperature.push((max/i).toFixed(1));
+              max=0;
+              i=0;
+
+          }  
+          
+          
+           // create a line chart weith chart.js
+           const ctx = document.getElementById("myChart").getContext("2d");
+        
+        const chart = function (cityName, temperature){ const myChart = new Chart(ctx, {
+            type: "line",
+            data: {
+              labels: cityName,
+              datasets: [
+                {
+                  label: "Average_temp",
+                  data: temperature,
+                  fill: false,
+                  borderColor: "red",
+                },
+                // {
+                //   label: "Min_temp",
+                //   data: min_temp,
+                //   fill: false,
+                //   borderColor: "green",
+                // },
+              ],
+            },
+            options: {
+              title: {
+                display: true,
+                text: "Micro:bit-Temperature",
+                fontSize: 30,
+              },
+              scales: {
+                xAxes: [
+                  {
+                    scaleLabel: {
+                      display: true,
+                      labelString: "City",
+                      fontSize: 16,
+                    },
+                    ticks: {
+                      beginAtZero: true,
+                      stepSize:1,
+                    },
+                  },
+                ],
+                yAxes: [
+                  {
+                    scaleLabel: {
+                      display: true,
+                      labelString: "Temperature",
+                      fontSize: 16,
+                    },
+                    ticks: {
+                      beginAtZero: true,
+                      callback: function (value, index, values) {
+                        return value + "°C";
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          });}
+
+          chart(cityName, temperature)
+
+      
+         
+
+        
+        });  
+      
+
+       
+
+        
+    </script>
+       
+    </div>
+</body>
+
+</html>

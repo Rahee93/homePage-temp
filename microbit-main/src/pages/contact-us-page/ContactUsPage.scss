@@ -1,0 +1,36 @@
+.ContactUsPage {
+  width: 100%;
+  height: auto;
+  &-banner {
+    position: absolute;
+    left: 0;
+    background-image: linear-gradient(
+        to right bottom,
+        rgba(10, 95, 143, 0.7),
+        rgba(212, 179, 179, 0.7)
+      ),
+      url("https://images.thestar.com/Ksw2vJJ51L5wwmMkwKG0lsVZ8r8=/1200x954/smart/filters:cb(2700061000)/https://www.thestar.com/content/dam/thestar/news/canada/2015/09/18/how-far-did-terry-fox-run-as-long-as-europe-or-half-of-africa/terry-fox.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+
+    width: 100vw;
+    height: 500px;
+
+    &__title {
+      margin: auto;
+      font-size: 6rem;
+      color: #fff;
+      text-transform: uppercase;
+    }
+  }
+
+  &-content {
+    padding-top: 550px;
+    max-width: 730px;
+    margin: 0 auto;
+    text-align: left;
+  }
+}
