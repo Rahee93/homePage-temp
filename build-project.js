@@ -41,7 +41,7 @@ async function build() {
       fs.mkdirSync(microbitTemperatureCollectorOutputFolder);
     }
 
-    console.log("Copying files to " + outputFolder);
+    console.log("Copying build files to " + outputFolder);
 
     copyFiles(path.join(currentDir, microbitMainFolderName, "build"), microbitMainOutputFolder);
     copyFiles(path.join(currentDir, microbitTerryFoxRunFolderName, "build"), microbitTerryFoxRunOutputFolder);
@@ -51,10 +51,6 @@ async function build() {
 }
 
 function copyFiles(src, des){
-  try {
-    fs.copySync(src, des, { overwrite: true });
-  } catch (err) {
-    console.error(err);
-  }
+  fs.copySync(src, des, { overwrite: true });
 }
 build();
