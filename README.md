@@ -6,7 +6,7 @@
 
 2. Install git using the link https://git-scm.com/downloads. After installing git, you can clone the repo to your local.
 
-3. For IDE, I use VS code to develop the js, and you can choose any IDE you want,
+3. For IDE, you could use VSCode to develop the React projects.
 
 4. Now, we have the repo (called `21s-cst8334-310-team-5`) in the local, open the command line and `cd` to the repo in your local, inside the repo, we can see the following folder structure:
 ```
@@ -42,6 +42,6 @@ After development and the code changes are merged to the `dev` branch, then we c
 Tutorials of the basic concept of React https://reactjs.org/docs/getting-started.html 
 
 # Redux
-The terryfox run website also uses Redux to manage the React state, and it is a more advanced topic for state management. If you want you can learn it here https://redux.js.org/. But I think you do not have to use it when you adding codes for React, because React has its own state management without Redux.
+The terryfox run website also uses Redux to manage the React state, and it is a more advanced topic for state management. If you want you can learn it here https://redux.js.org/. But you do not have to use it when you adding codes for React, because React has its own state management without Redux.
 
 
