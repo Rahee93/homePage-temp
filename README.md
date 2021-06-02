@@ -1,3 +1,6 @@
+First version of Read Me 
+
+
 # CST8334 Team Codeck
 
 # Development Environment Setup
@@ -37,5 +40,11 @@ After development and the code changes are merged to the `dev` branch, then we c
 ![image](https://user-images.githubusercontent.com/62402998/120517652-ac6ce980-c39e-11eb-9cbf-9aca3a8f49ab.png)
 
 6. Then click `Delopys` on the top, and drag and drop the folder `microbit-build` to this page. After uploading, you should see the latest changes on our [website ](https://mymicrobit.netlify.app).
+
+# React
+Tutorials of the basic concept of React https://reactjs.org/docs/getting-started.html 
+
+# Redux
+The terryfox run website also uses Redux to manage the React state, and it is a more advanced topic for state management. If you want you can learn it here https://redux.js.org/. But I think you do not have to use it when you adding codes for React, because React has its own state management without Redux.
 
 
