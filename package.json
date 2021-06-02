@@ -1,0 +1,8 @@
+{
+  "name": "21s-cst8334-310-team5",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "fs-extra": "^10.0.0"
+  }
+}
