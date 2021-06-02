@@ -30,9 +30,9 @@ After development and the code changes are merged to the `dev` branch, then we c
 
 1. In your local repo, check out to dev branch and do git pull: `git checkout dev` and `git pull origin dev`
 
-2. After pulling the latest code, do `npm install` under the root of the repo, this will install the third-party lib for the build script
+2. After pulling the latest code, if it is the first time to deploy, then do `npm install` under the root of the repo, this will install the third-party lib for the build script
 
-3. Do `npm run build`
+3. Then do `npm run build`
 
 4. You will find a folder called `microbit-build` is created in the root of your local repo, this is the build folder we will deploy to netlify, and this folder is not under git control, so you do not need to delete it.
 
