@@ -4,5 +4,8 @@
   "description": "",
   "dependencies": {
     "fs-extra": "^10.0.0"
+  },
+  "scripts": {
+    "build": "node build-project.js"
   }
 }
