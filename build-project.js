@@ -45,7 +45,7 @@ async function build() {
 
     copyFiles(path.join(currentDir, microbitMainFolderName, "build"), microbitMainOutputFolder);
     copyFiles(path.join(currentDir, microbitTerryFoxRunFolderName, "build"), microbitTerryFoxRunOutputFolder);
-    copyFiles(path.join(currentDir, microbitTemperatureCollectorFolderName), microbitTemperatureCollectorOutputFolder);
+    copyFiles(path.join(currentDir, microbitTemperatureCollectorFolderName, "legacy-code"), microbitTemperatureCollectorOutputFolder);
     // copy _redirect
     copyFiles(path.join(currentDir, '_redirects'), path.join(outputFolder, '_redirects'));
 }
