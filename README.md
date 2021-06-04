@@ -5,7 +5,7 @@
 1. Install node 14 using the link https://nodejs.org/en/download/
 
 2. Install git using the link https://git-scm.com/downloads. After installing git, you can clone the repo to your local.
-
+ For clone git repo
 3. For IDE, you could use VSCode to develop the React projects.
 
 4. Now, we have the repo (called `21s-cst8334-310-team-5`) in the local, open the command line and `cd` to the repo in your local, inside the repo, we can see the following folder structure:
