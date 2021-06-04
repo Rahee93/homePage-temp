@@ -10,11 +10,11 @@ async function build() {
     const microbitTemperatureCollectorFolderName = 'microbit-temperature-collector';
     console.log("Building microbit-main.");
     process.chdir(path.join(currentDir, microbitMainFolderName));
-    await exec('npm run winBuild');
+    await npmBuild();
 
     console.log("Building microbit-terryfox-run.")
     process.chdir(path.join(currentDir, microbitTerryFoxRunFolderName))
-    await exec('npm run winBuild');
+    await npmBuild();
 
     // console.log("Building microbit-temperature-collector.")
     // process.chdir("../microbit-temperature-collector")
@@ -53,4 +53,13 @@ async function build() {
 function copyFiles(src, des){
   fs.copySync(src, des, { overwrite: true });
 }
+
+async function npmBuild(){
+  try {
+    await exec('npm run winBuild');
+  } catch(e) {
+    await exec('npm run build');
+  }
+}
+
 build();
