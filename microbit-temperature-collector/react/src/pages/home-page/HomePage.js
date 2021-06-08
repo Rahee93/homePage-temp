@@ -14,6 +14,7 @@ const HomePage = () => {
   return (
     <>
       <Header />
+      <div style={{flex: '1 1 auto'}}>test home page</div>
       <Footer />
       <BackToTop />
     </>
