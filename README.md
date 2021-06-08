@@ -61,3 +61,6 @@ The terryfox run website also uses Redux to manage the React state, and it is a 
 ![image](https://user-images.githubusercontent.com/62402998/120738339-b3d6e480-c4bd-11eb-8202-c5bed9a574a9.png)  and save the ssh key
 
 6. then go to git bash, do `git clone git@github.com:algonquin-college-sat/21s-cst8334-310-team-5.git`, then you can clone the repo to your local
+
+# Suggested workflow for how to work with git
+If now you start working on the new issue:
