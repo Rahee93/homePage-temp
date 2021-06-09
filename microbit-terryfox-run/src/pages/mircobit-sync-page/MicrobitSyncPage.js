@@ -45,7 +45,7 @@ async function readLoop() {
           window.alert("Upload data successfully on " + currentTime.toString());
         })
         .catch((error) => {
-          window.location.replace("/404/server");
+          window.location.replace("404/server");
         });
     }
     if (done) {
