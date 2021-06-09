@@ -38,7 +38,7 @@ const Header = () => {
             <Link to="/tutorials" className="navbar-nav__item p-2">
               Tutorials
             </Link>
-            <Link /*to="/contact-us"*/ className="navbar-nav__item p-2">
+            <Link to="/contact-us" className="navbar-nav__item p-2">
               Contact Us
             </Link>
           </Nav>

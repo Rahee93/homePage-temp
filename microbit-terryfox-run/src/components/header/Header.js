@@ -38,9 +38,6 @@ const Header = () => {
             <Link to="/gallery" className="navbar-nav__item p-2">
               Gallery
             </Link>
-            <Link to="/contact-us" className="navbar-nav__item p-2">
-              Contact Us
-            </Link>
           </Nav>
           <Nav className="ml-auto">
             <Link to="/microbit-sync">
