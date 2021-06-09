@@ -4,7 +4,6 @@
 
 import React from "react";
 import { StylesProvider } from '@material-ui/core/styles';
-import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel  from '@material-ui/core/StepLabel';
@@ -19,24 +18,6 @@ import ScrollTop from "../../components/scroll-top/ScrollTop";
 import microbitTemperature from "../../assets/photo/temperature.png";
 import "./GetStartedPage.scss";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '50%',
-    alignSelf: 'center',
-    fontFamily: 'Boogaloo'
-  },
-  button: {
-    marginTop: theme.spacing(1),
-    marginRight: theme.spacing(1),
-  },
-  actionsContainer: {
-    marginBottom: theme.spacing(2),
-  },
-  resetContainer: {
-    padding: theme.spacing(3),
-  },
-}));
-
 function getSteps() {
   return [
     'Download The Program',
@@ -50,7 +31,7 @@ function getSteps() {
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return <>Please click <a href="https://drive.google.com/uc?export=download&id=1OddIrpdQtBN3bzLw6kyB00wiOrZEG4aH">here</a> to download the .hex temperature collector program.</>;
+      return <>Please click <a href="">here</a> to download the .hex temperature collector program.</>;
     case 1:
       return <><p>Connect your Micro:bit to a USB port on your computer.</p>
             <p>Drag and drop the .hex temperature collector programm from the location where you downloaded to your Micro:bit.</p>
@@ -75,7 +56,6 @@ function getStepContent(step) {
 }
 
 const GetStartedPage = () => {
-  const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
 
@@ -129,7 +109,7 @@ const GetStartedPage = () => {
             <Paper square elevation={2} className={"GetStartedPage-reset"}>
               <Typography>All steps completed - you&apos;re finished</Typography>
               <Button onClick={handleReset} style={{fontFamily:"Boogaloo"}}>
-                Want to see again ?
+                Want to try again ?
               </Button>
             </Paper>
           )}
