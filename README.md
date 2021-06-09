@@ -64,3 +64,31 @@ The terryfox run website also uses Redux to manage the React state, and it is a 
 
 # Suggested workflow for how to work with git
 If now you start working on the new issue:
+1. Make sure you are in dev branch(our main branch)
+Do `git checkout dev` to switch to dev branch
+
+2. Do `git pull origin dev` to make sure you have the latest change in your local 
+
+3. Now we need to create new branch for your issue, Do `git checkout -b <your branch name>` for example: 
+![image](https://user-images.githubusercontent.com/62402998/121272154-3df2c480-c893-11eb-9120-914f94561371.png)
+
+4. Then you can do your coding 
+
+5. After you finish your coding, do 
+- `git add . `
+- `git commit -m "<your commit messages for the changes>"`
+- Then we need to push the changes to github, do `git push origin <your branch name>`, for example  
+
+6. After push your changes to github, go to pull request page, then you can create a new pull request for your branch 
+![image](https://user-images.githubusercontent.com/62402998/121272292-95913000-c893-11eb-80f0-1dabcc8e523d.png)
+
+7. Then you will see this page, click create pull request
+![image](https://user-images.githubusercontent.com/62402998/121272320-a80b6980-c893-11eb-808d-d84d150da6d0.png)
+
+8. This is your pull request
+![image](https://user-images.githubusercontent.com/62402998/121272325-ab065a00-c893-11eb-9164-51c0c5afc1e3.png)
+
+9. Then you can link your issues in zenhub 
+![image](https://user-images.githubusercontent.com/62402998/121272335-b0fc3b00-c893-11eb-83dd-c24af25fb1e9.png)
+
+10. After the pull request is reviewed by others, if the review is good, then you can click merge pull request and confirm, after that, you can delete your branch or not, it is optional
