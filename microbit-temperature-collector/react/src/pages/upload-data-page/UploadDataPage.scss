@@ -1,0 +1,25 @@
+.GetStartedPage {
+    &-banner {
+      background-image: linear-gradient(
+          to right bottom,
+          rgba(79, 150, 192, 0.2),
+          rgba(151, 121, 121, 0.6)
+        ),
+        url("https://images.unsplash.com/photo-1539795845756-4fadad2905ec?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1650&q=80");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+  
+      width: 100vw;
+      height: 200px;
+  
+      &__title {
+        margin: auto;
+        font-size: 6rem;
+        color: #fff;
+        text-transform: uppercase;
+      }
+    }
+  }

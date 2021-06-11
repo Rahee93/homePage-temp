@@ -29,7 +29,7 @@ const Header = () => {
             <Link to="/" className="navbar-nav__item p-2">
               Get Started
             </Link>
-            <Link to="/" className="navbar-nav__item p-2">
+            <Link to="/upload-data" className="navbar-nav__item p-2">
               Upload your data
             </Link>
             <Link /*to="/dictionary"*/ className="navbar-nav__item p-2">
