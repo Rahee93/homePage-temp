@@ -8,7 +8,6 @@ import { Route, Switch } from "react-router-dom";
 import { GlobalStyle } from "./GlobalStyles";
 import MapPage from "./pages/map-page/MapPage";
 import HomePage from "./pages/home-page/HomePage";
-import ContactUsPage from "./pages/contact-us-page/ContactUsPage";
 import GalleryPage from "./pages/gallery-page/GalleryPage";
 import GetStartedPage from "./pages/get-started-page/GetStartedPage";
 import MicrobitSyncPage from "./pages/mircobit-sync-page/MicrobitSyncPage";
@@ -29,7 +28,6 @@ const App = () => {
         <Route exact path="/get-started" component={GetStartedPage} />
         <Route exact path="/microbit-sync" component={MicrobitSyncPage} />
         <Route exact path="/gallery" component={GalleryPage} />
-        <Route exact path="/contact-us" component={ContactUsPage} />
         <Route exact path="/404/cancel" component={ErrorCancelButton} />
         <Route exact path="/404/server" component={ErrorPageServer} />
         <Route exact path="/*" component={ErrorNoPage} />

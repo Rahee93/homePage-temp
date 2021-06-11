@@ -13,7 +13,7 @@ import "./Header.scss";
 const Header = () => {
   return (
     <div className="header">
-      <Navbar className="navbar" bg="white" expand="lg" name="top">
+      <Navbar className="navbar" bg="custom" expand="lg" name="top">
         <Navbar.Brand className="navbar-headers">
           <Link to="/" className="navbar-headers">
             <div className="navbar-headers__image"></div>
@@ -37,9 +37,6 @@ const Header = () => {
             </Link>
             <Link to="/gallery" className="navbar-nav__item p-2">
               Gallery
-            </Link>
-            <Link to="/contact-us" className="navbar-nav__item p-2">
-              Contact Us
             </Link>
           </Nav>
           <Nav className="ml-auto">

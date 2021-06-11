@@ -10,9 +10,9 @@ import HomePage from "./pages/home-page/HomePage";
 import TerryFoxRunPage from "./pages/terry-fox-run-page/TerryFoxRunPage";
 import TemperatureCollectorPage from "./pages/temperature-collector-page/TemperatureCollectorPage";
 import TutorialsPage from "./pages/tutorials-page/TutorialsPage";
-// import ContactUsPage from "./pages/contact-us-page/ContactUsPage";;
-// import ErrorCancelButton from "./pages/error-page/ErrorCancelButton";
-// import ErrorPageServer from "./pages/error-page/ErrorPageServer";
+import ContactUsPage from "./pages/contact-us-page/ContactUsPage";
+//import ErrorCancelButton from "./pages/error-page/ErrorCancelButton";
+//import ErrorPageServer from "./pages/error-page/ErrorPageServer";
 import ErrorNoPage from "./pages/error-page/ErrorNoPage";
 
 import "./App.scss";
@@ -28,8 +28,8 @@ const App = () => {
         <Route exact path="/temperature-collector" component={TemperatureCollectorPage} />
         {/* <Route exact path="/dictionary" component={TemperatureCollectorPage} />*/}
         <Route exact path="/tutorials" component={TutorialsPage} />
-        {/* <Route exact path="/contact-us" component={ContactUsPage} />
-        <Route exact path="/404/cancel" component={ErrorCancelButton} />
+        <Route exact path="/contact-us" component={ContactUsPage} />
+        {/* <Route exact path="/404/cancel" component={ErrorCancelButton} />
         <Route exact path="/404/server" component={ErrorPageServer} /> */}
         <Route exact path="/*" component={ErrorNoPage} />
       </Switch>

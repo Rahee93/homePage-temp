@@ -11,8 +11,9 @@ import "./ContactUsPage.scss";
 
 const ContactUsPage = () => {
   return (
-    <div className="section ContactUsPage">
+    <>
       <Header />
+      
       <div className="ContactUsPage-banner">
         <h1 className="ContactUsPage-banner__title">Contact Us</h1>
       </div>
@@ -29,7 +30,7 @@ const ContactUsPage = () => {
 
       <Footer />
       <ScrollTop />
-    </div>
+    </>
   );
 };
 
