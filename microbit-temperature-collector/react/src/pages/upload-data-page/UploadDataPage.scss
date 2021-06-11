@@ -1,4 +1,7 @@
-.GetStartedPage {
+.UploadDataPage {
+    flex: 1 1 auto;
+    display: flex;
+    flex-flow: column;
     &-banner {
       background-image: linear-gradient(
           to right bottom,
@@ -21,5 +24,13 @@
         color: #fff;
         text-transform: uppercase;
       }
+    }
+    &-stepper-content {
+        display: flex;
+        align-items: center;
+        flex-flow: column;
+        &-button {
+            margin-right: 8px;
+        }
     }
   }
