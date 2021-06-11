@@ -87,7 +87,7 @@ const MicrobitSyncPage = () => {
 
       readLoop();
     } catch (error) {
-      window.location.replace("404/cancel");
+      window.location.replace("404/errorpage");
     }
   };
   return (
