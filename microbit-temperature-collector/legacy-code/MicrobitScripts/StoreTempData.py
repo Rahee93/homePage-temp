@@ -45,7 +45,7 @@ def record_temperature():
 
 recording = False
 last_record_time = 0
-interval = 2000#86400000 # 24 hours
+interval = 86400000 # 24 hours
 def main():
     """
     The main heart of the program that is run in an infinite while loop.
