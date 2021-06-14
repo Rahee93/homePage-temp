@@ -11,9 +11,9 @@
     background-size: cover;
     display: flex;
     flex-direction: column;
-
+    flex: 0 0 auto;
     width: 100vw;
-    height: 200px;
+    height: 300px;
 
     &__title {
       margin: auto;
@@ -23,7 +23,7 @@
     }
   }
   &-stepper {
-    flex: 1 1 auto;
+    flex: 1 0 auto;
     width: 80%;
     align-self: center;
     &-actions{

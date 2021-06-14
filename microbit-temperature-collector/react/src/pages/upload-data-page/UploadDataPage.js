@@ -330,7 +330,7 @@ class UploadDataPage extends React.Component {
             shrink: true,
           }}
           onChange={this.onDateChange}
-          style={{width: '75%'}}
+          className='UploadDataPage-content-step-action'
         />
       </>
     },
@@ -345,7 +345,7 @@ class UploadDataPage extends React.Component {
         select
         onChange={this.onSchoolChange}
         label="Please select your school"
-        style={{width: '75%'}}
+        className='UploadDataPage-content-step-action'
       >
         {this.state.schoolData.schooleList.map((option) => (
           <MenuItem key={option.value} value={option.value}>
@@ -367,7 +367,8 @@ class UploadDataPage extends React.Component {
           size="large"
           startIcon={this.state.serial ? <LinkIcon/> : <LinkOffIcon />}
           onClick={this.onConnectButtonClick}
-          style={this.state.serial ? {width: '75%', backgroundImage: 'linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)'} : { width: '75%'}}
+          style={this.state.serial ? { backgroundImage: 'linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)'} : null}
+          className='UploadDataPage-content-step-action'
         >
           {this.state.serial ? 'Connected' : 'Connect'}
         </Button>
