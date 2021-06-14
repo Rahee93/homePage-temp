@@ -14,6 +14,7 @@ import MicrobitSyncPage from "./pages/mircobit-sync-page/MicrobitSyncPage";
 import ErrorCancelButton from "./pages/error-page/ErrorCancelButton";
 import ErrorPageServer from "./pages/error-page/ErrorPageServer";
 import ErrorNoPage from "./pages/error-page/ErrorNoPage";
+import ErrorPage from "./pages/error-page/ErrorPage";
 
 import "./App.scss";
 
@@ -30,6 +31,7 @@ const App = () => {
         <Route exact path="/gallery" component={GalleryPage} />
         <Route exact path="/404/cancel" component={ErrorCancelButton} />
         <Route exact path="/404/server" component={ErrorPageServer} />
+        <Route exact path="/404/errorpage" component={ErrorPage} />
         <Route exact path="/*" component={ErrorNoPage} />
       </Switch>
     </div>
