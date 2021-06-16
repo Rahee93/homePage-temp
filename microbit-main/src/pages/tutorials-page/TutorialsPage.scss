@@ -1,0 +1,71 @@
+.TutorialsPage {
+    width: 100%;
+    height: auto;
+    &-banner {
+      position: absolute;
+      left: 0;
+
+      background-image: linear-gradient(
+          to right bottom,
+          rgba(83, 206, 35, 0.7),
+          rgba(204, 27, 27, 0.7)
+        ),                
+        url("https://robocrop.realpython.net/?url=https%3A//files.realpython.com/media/Python-for-Embedded-Devices-Overview_Watermarked.77501e696f85.jpg&w=960&sig=3164c70faf45625bd6b60eb92023d63bd8fd466c");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+  
+      width: 100vw;
+      height: 500px;
+  
+      &__title {
+        margin: auto;
+        font-size: 6rem;
+        color: #fff;
+        text-transform: uppercase;
+      }
+    }
+  
+    &-content {
+      padding-top: 550px;
+      max-width: 100%;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    &-Instructions {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    padding-bottom: 100%;
+    overflow: hidden;
+
+        &__frame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 82%
+        }
+    }
+    
+    &-Simulator {
+        position: relative;
+        height: 0;
+        padding-bottom: 81.97%;
+        overflow: hidden;
+    
+            &__frame {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%
+            }
+        }
+}
+  
