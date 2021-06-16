@@ -49,7 +49,7 @@ function getStepContent(step) {
       <p>It is better to keep your Micro:bit for at least 5 days to record meaningful data</p></>
     case 4:
       return <>
-        <p>After recording the temperature, you now can upload your temperature data to our server, please go to <Link to='/upload-temperature-data'>Upload Temperature Data</Link> page for details.</p>
+        <p>After recording the temperature, you now can upload your temperature data to our server, please go to <Link to='/upload-data'>Upload Temperature Data</Link> page for details.</p>
       </>
     default:
       return 'Unknown step';
