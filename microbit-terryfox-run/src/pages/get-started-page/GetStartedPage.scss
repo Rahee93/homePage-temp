@@ -57,10 +57,12 @@
 @media only screen and (min-width: 900px) {
   .GetStartedPage {
     &-content {
-      padding-left: 10px;
+      padding-left: 100px;
+      padding-right: 100px;
       .steps {
         padding-left: 50px;
       }
     }
   }
 }
+
