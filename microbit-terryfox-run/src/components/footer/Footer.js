@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Footer.scss";
 
 function Footer() {
@@ -19,18 +20,18 @@ function Footer() {
           <div className="col">
             <h4>Links</h4>
             <ui className="list-unstyled">
-              <li><a href="/">Home</a></li>
-              <li><a href="/">Contact</a></li>
-              <li><a href="/">FAQ</a></li>
+              <li><Link href="/">Home</Link></li>
+              <li><Link href="/">Contact</Link></li>
+              <li><Link href="/">FAQ</Link></li>
             </ui>
           </div>
           {/* Column3 */}
           <div className="col">
             <h4>Follow us</h4>
             <ui className="list-unstyled">
-              <li><a href="/">Facebook</a></li>
-              <li><a href="/">Instagram</a></li>
-              <li><a href="/">Linkedin</a></li>
+              <li><Link href="/">Facebook</Link></li>
+              <li><Link href="/">Instagram</Link></li>
+              <li><Link href="/">Linkedin</Link></li>
             </ui>
           </div>
         </div>
@@ -40,8 +41,8 @@ function Footer() {
             &copy;{new Date().getFullYear()} 
             Terry Fox | 
             All rights reserved |
-            <a href="/">Terms Of Service</a> | 
-            <a href="/">Privacy</a>
+            <Link href="/">Terms Of Service</Link> | 
+            <Link href="/">Privacy</Link>
           </p>
         </div>
       </div>
