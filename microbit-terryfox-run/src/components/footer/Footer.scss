@@ -1,3 +1,4 @@
+@media only screen and (max-width: 1025px) {
 .main-footer {
   color: white;
   background-color: #ca3241;
@@ -9,4 +10,18 @@
 }
 .main-footer a {
   color: white;
+}
+}
+
+@media only screen and (max-width: 480px) {
+  .row {
+    margin: auto !important;
+    width: 100%!important;
+    display: block!important;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .col {
+    padding-bottom: 20px;
+  }
 }
