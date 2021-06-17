@@ -20,18 +20,18 @@ function Footer() {
           <div className="col">
             <h4>Links</h4>
             <ui className="list-unstyled">
-              <li><Link href="/">Home</Link></li>
-              <li><Link href="/">Contact</Link></li>
-              <li><Link href="/">FAQ</Link></li>
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/">Contact</Link></li>
+              <li><Link to="/">FAQ</Link></li>
             </ui>
           </div>
           {/* Column3 */}
           <div className="col">
             <h4>Follow us</h4>
             <ui className="list-unstyled">
-              <li><Link href="/">Facebook</Link></li>
-              <li><Link href="/">Instagram</Link></li>
-              <li><Link href="/">Linkedin</Link></li>
+              <li><Link to="/">Facebook</Link></li>
+              <li><Link to="/">Instagram</Link></li>
+              <li><Link to="/">Linkedin</Link></li>
             </ui>
           </div>
         </div>
@@ -41,8 +41,8 @@ function Footer() {
             &copy;{new Date().getFullYear()} 
             Terry Fox | 
             All rights reserved |
-            <Link href="/">Terms Of Service</Link> | 
-            <Link href="/">Privacy</Link>
+            <Link to="/">Terms Of Service</Link> | 
+            <Link to="/">Privacy</Link>
           </p>
         </div>
       </div>
