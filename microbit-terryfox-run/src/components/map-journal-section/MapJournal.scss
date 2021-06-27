@@ -1,0 +1,52 @@
+.MapJournal {
+  text-align: center;
+  width: 100%;
+  // padding: 0 20px;
+  margin-bottom: 60px;
+
+  &-title {
+    margin: 20px;
+    font-family: Boogaloo;
+  }
+
+  &-content {
+    // padding: 0 40px;
+    color: #252525;
+
+    &__image {
+      img {
+        width: 100%;
+        border-radius: 5px;
+      }
+
+      span {
+        font-size: 14px;
+      }
+    }
+
+    &__description {
+      // max-width: 500px;
+      text-align: left;
+    }
+  }
+  .interactive {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .interactive-description {
+      max-width: 850px;
+      text-align: left;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .MapJournal {
+    .interactive-map {
+      iframe {
+        height: 400px;
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+    "name": "cst8334-21w-310-team-4",
+    "version": "1.0.0",
+    "description": "A Micro:Bit project developed by 4th Semester students at Algonquin College. This is a web application designed to be used with the BBC MicroBit, a microcomputer designed with educational purposes in mind. Our project is designed to use temperature data collected by the MicroBit to plot the differences between locations on a provided map.",
+    "main": "RetrieveTempData.js",
+    "scripts": {
+        "test": "jest --coverage"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/algonquin-college-sat/cst8334-21w-310-team-4.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/algonquin-college-sat/cst8334-21w-310-team-4/issues"
+    },
+    "homepage": "https://github.com/algonquin-college-sat/cst8334-21w-310-team-4#readme",
+    "devDependencies": {
+        "jest": "^26.6.3"
+    }
+}

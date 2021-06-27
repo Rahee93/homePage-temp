@@ -1,0 +1,25 @@
+.ImageSlide {
+  margin-bottom: 60px;
+  .carousel {
+    margin: auto;
+  }
+
+  img {
+    // height: 90vh;
+    width: 100vw;
+    height: 90vh;
+    object-fit: cover;
+  }
+
+  @media only screen and (max-width: 900px) {
+    img {
+      height: 70vh;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    img {
+      height: 400px;
+    }
+  }
+}

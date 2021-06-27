@@ -1,0 +1,29 @@
+.error-page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    background-color: #ffe4ea;
+    .wrapper {
+      .image {
+        display: inline-block;
+        background-image: url("https://freefrontend.com/assets/img/html-css-404-page-templates/HTML-404-Error-Example-3.gif");
+        background-size: cover;
+        background-position: center;
+        width: 40vh;
+        height: 40vh;
+      }
+  
+      .title {
+        color: #396177;
+      }
+  
+      .description {
+        max-width: 550px;
+        // font-size: 16px;
+        color: rgb(28, 61, 78);
+        text-align: left;
+      }
+    }
+  }
+  

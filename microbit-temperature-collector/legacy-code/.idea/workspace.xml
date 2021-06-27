@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b9f49e82-6100-41cd-aaf8-e384657503fa" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Firmware.html" beforeDir="false" afterPath="$PROJECT_DIR$/Firmware.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1qPQVCqpBsvu1QafhZEbQI7Yzcj" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Jashan\PycharmProjects\cst8334-21w-310-team-4\img" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="RetrieveTempData" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="cst8334-21w-310-team-4" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/MicrobitScripts" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MicrobitScripts/RetrieveTempData.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.RetrieveTempData" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b9f49e82-6100-41cd-aaf8-e384657503fa" name="Default Changelist" comment="" />
+      <created>1616978767237</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1616978767237</updated>
+      <workItem from="1616978770101" duration="37180000" />
+      <workItem from="1617202049192" duration="22210000" />
+      <workItem from="1617306469155" duration="1862000" />
+      <workItem from="1617375006627" duration="56000" />
+      <workItem from="1618242981625" duration="18566000" />
+      <workItem from="1618424206394" duration="1116000" />
+    </task>
+    <task id="LOCAL-00001" summary="Implemented Web Serial API. Deleted all dependencies on Web USB API.">
+      <created>1616990390108</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1616990390108</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Refactored StoreTempData.py. Press b to initialize recording, press a to upload recording to website">
+      <created>1617043244587</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1617043244587</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Refactored StoreTempData.py. Press b to initialize recording, press a to upload recording to website">
+      <created>1617043419151</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1617043419151</updated>
+    </task>
+    <task id="LOCAL-00004" summary="added link from RetrieveTempData.js to Visualization.html">
+      <created>1617116288255</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1617116288255</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Firmware.html for flashing the microbit">
+      <created>1617117602899</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1617117602899</updated>
+    </task>
+    <task id="LOCAL-00006" summary="updated StoreTempData.py">
+      <created>1617129751498</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1617129751498</updated>
+    </task>
+    <task id="LOCAL-00007" summary="updated Firmware.html. Next apply bootstrap to Firmware.html by @Anh, and add Firmware.html on the main menu as &quot;Flash Your Microbit&quot;">
+      <created>1617209239794</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1617209239794</updated>
+    </task>
+    <task id="LOCAL-00008" summary="t">
+      <created>1617209288883</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1617209288883</updated>
+    </task>
+    <task id="LOCAL-00009" summary="added last 2 insrtructions on Firmware.html">
+      <created>1617210838491</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1617210838491</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Updated the page RetrieveTempData.js &amp;html">
+      <created>1617217697610</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1617217697610</updated>
+    </task>
+    <task id="LOCAL-00011" summary="pushed the demo version">
+      <created>1617375048096</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1617375048096</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Final code changes and documentation by Jashan">
+      <created>1618380064273</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1618380064273</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Implemented Web Serial API. Deleted all dependencies on Web USB API." />
+    <MESSAGE value="Refactored StoreTempData.py. Press b to initialize recording, press a to upload recording to website" />
+    <MESSAGE value="added link from RetrieveTempData.js to Visualization.html" />
+    <MESSAGE value="Firmware.html for flashing the microbit" />
+    <MESSAGE value="updated StoreTempData.py" />
+    <MESSAGE value="updated Firmware.html. Next apply bootstrap to Firmware.html by @Anh, and add Firmware.html on the main menu as &quot;Flash Your Microbit&quot;" />
+    <MESSAGE value="t" />
+    <MESSAGE value="added last 2 insrtructions on Firmware.html" />
+    <MESSAGE value="Updated the page RetrieveTempData.js &amp;html" />
+    <MESSAGE value="pushed the demo version" />
+    <MESSAGE value="Final code changes and documentation by Jashan" />
+    <option name="LAST_COMMIT_MESSAGE" value="Final code changes and documentation by Jashan" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/cst8334_21w_310_team_4$RetrieveTempData.coverage" NAME="RetrieveTempData Coverage Results" MODIFIED="1618361921072" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/MicrobitScripts" />
+  </component>
+</project>

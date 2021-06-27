@@ -1,0 +1,10 @@
+.embeded-page {
+    flex: 1 1 auto;
+    width: 100%;
+    display: flex;
+    justify-content: stretch;
+    iframe {
+        width: 100%;
+        border: none;
+    }
+}

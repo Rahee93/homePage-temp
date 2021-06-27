@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Microbit</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!--Div element for cookies below. However this demo will not generate cookies. I have left the 
+    code below. -->
+
+
+    <style>
+        .vertical-center {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+        
+        @keyframes pop {
+            0% {
+                transform: translate(-50%, -20%) scale(1.0, 0.75);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1, 1);
+            }
+            55% {
+                transform: translate(-50%, -50%) rotate(-5deg);
+            }
+            60% {
+                transform: translate(-50%, -50%) rotate(5deg);
+            }
+            65% {
+                transform: translate(-50%, -50%) rotate(5deg);
+            }
+            70% {
+                transform: translate(-50%, -50%) rotate(-5deg);
+            }
+            100% {
+                transform: translate(-50%, -20%) scale(1.0, 0.75);
+            }
+        }
+        
+        body {
+            background: #7db9e8;
+            background: -moz-radial-gradient(center, ellipse cover, #7db9e8 0%, #21374b 100%);
+            background: -webkit-radial-gradient(center, ellipse cover, #7db9e8 0%, #21374b 100%);
+            background: radial-gradient(ellipse at center, #7db9e8 0%, #21374b 100%);
+            filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#7db9e8", endColorstr="#21374b", GradientType=1);
+            margin: 0;
+            width: 100vw;
+            height: 100vh;
+        }
+        
+        body #parcel {
+            width: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 32px;
+            animation: pop 2s infinite;
+        }
+        
+        img {
+            height: 50%;
+        }
+    </style>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="home.html">Micro:bit</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Visualization
+              </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="Visualization.html">Map</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="linechart.html">Line chart</a>
+                    </div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="RetrieveTempData.html">Upload your Data</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Firmware.html">Flash Your Micro:bit</a>
+                    </li>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div id="parcel">
+        <img src="img/microbit.gif" />
+    </div>
+    <div class='cookie-overlay p-4 d-none' style='display: none'>
+        <div class='d-flex'>
+            <div class="mr-3">
+            Please be aware that this site may generate cookies. By using the
+            site, you agree to our <a href='cookiepolicy.html'>cookie policy.</a>
+        </p>
+        </div>
+</body>
+
+</html>

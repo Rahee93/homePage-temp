@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Microbit</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-analytics.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGUx1IjTWNwBQqAdyRt0C6FweU8g23lQM&libraries=visualization" async></script>  
+</head>
+
+<body>
+    <h1>Converting script</h1>
+    <script>   
+
+        // ----- FIREBASE CONFIGURATION ----- 
+        const firebaseConfig = {
+            apiKey: "AIzaSyDZD2IcDJn3aZ7v3CJ4HDh1_NRpPGcV8f8",
+            authDomain: "microbitdatavisualization.firebaseapp.com",
+            databaseURL: "https://microbitdatavisualization-default-rtdb.firebaseio.com",
+            projectId: "microbitdatavisualization",
+            storageBucket: "microbitdatavisualization.appspot.com",
+            messagingSenderId: "148549104317",
+            appId: "1:148549104317:web:15c889eac8c44cca41bdd4",
+            measurementId: "G-26GSC30JQ9",
+        };
+
+        // ----- INITIALIZE DB ----- 
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+
+        // ----- GETTING ALL LOCATIONS FROM DB ----- 
+        var schoolname = firebase.database().ref("locations/").once("value").then((snapshot) => {
+                
+            var sname = snapshot.val();
+
+            // ----- LOOP EACH SCHOOL LOCATION ----- 
+            for (let i=0; i<sname.length; i++) {
+                const fullAdress            = sname[i].Street+', '+sname[i].City+', '+sname[i].Province
+                const addressForGeoRequest  = fullAdress.replaceAll(" ","+")
+            
+                // GETTING GEO LOCATION 
+                fetch("https://maps.googleapis.com/maps/api/geocode/json?address="+addressForGeoRequest+"&key=AIzaSyBGUx1IjTWNwBQqAdyRt0C6FweU8g23lQM")
+                .then((response) => {
+
+                    // IF SOMETHING WRONG WHEN GETTING GEO LOCATION
+                    if (response.status !== 200) {
+                        console.log(`Something wrong when getting geo location with this address: ${fullAdress}\nStatus code is: ${+response.status}` );
+                        return;
+                    }
+
+                    // GET THE RESPONSE AND ADD TO DB 
+                    response.json().then((data) => { 
+                        if (!data.results[0]) return;
+                        var geo = data.results[0].geometry.location
+                        firebase.database().ref('locations/'+i).update({ 
+                            lat : geo.lat,
+                            lng : geo.lng,
+                        })              
+                    })
+                    }
+                )
+            }
+            // ----- END OF LOOP ----- 
+        })    
+    </script>
+</body>
+</html>

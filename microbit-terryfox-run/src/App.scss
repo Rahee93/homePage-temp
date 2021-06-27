@@ -1,0 +1,49 @@
+/* .map-container { */
+/* position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0; */
+/* width: 80%; */
+/* height: 80%; */
+/* } */
+.App {
+  text-align: center;
+  padding: 0;
+  padding-top: 85px;
+
+  .section {
+    padding: 0;
+  }
+
+  .bold {
+    font-weight: 600;
+  }
+}
+
+@media only screen and (max-width: 920px) {
+  .App {
+    padding: 75px 0;
+    .section {
+      padding: 0;
+    }
+  }
+  h1 {
+    font-size: 35px !important;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .App {
+    padding: 0;
+    .section {
+      padding: 0;
+    }
+  }
+  h1 {
+    font-size: 30px !important;
+  }
+  p {
+    font-size: 16px !important;
+  }
+}

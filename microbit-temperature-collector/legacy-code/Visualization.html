@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <title>Micro:bit Temperature Analysis</title>
+    <meta charset="utf-8">
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+
+    <style>
+        body {
+            background-color: aliceblue;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="home.html">Micro:bit</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="home.html">Home <span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Visualization
+              </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="Visualization.html">Map</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="linechart.html">Line chart</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="RetrieveTempData.html">Upload your Data</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Firmware.html">Flash Your Micro:bit</a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <br>
+        <div>
+            <!-----------------------------------------------------------------------
+                        Need to run the server to make ReCAPTCHA works
+            <script src='https://www.google.com/recaptcha/api.js' async defer></script>
+            -------------------------------------------------------------------------->
+
+            <form action="Visualization.html" method="POST">
+                <h2>Select your colour scheme</h2>
+                <input type="checkbox" id="colour" name="colour" value="colour-blind" />
+                <label for="colour">Colour-Blind Filter</label><br>
+                <button type="submit" class="btn btn-outline-success" onclick="getCheckValue()">Submit <i class="far fa-save"></i></button>
+                <br><br>
+            </form>
+        </div>
+
+        <!----------------------------- ReCAPTCHA config ------------------------------  
+                     Need to run the server to make ReCAPTCHA works
+        <div class="g-recaptcha" data-sitekey="6LeKy5waAAAAAMCysnCa8Vypizqg-Qc0bbyfbuXK"></div>
+        <span id="captcha" style="color:red"></span>
+        <span id="captcha2" style="color:green"></span> 
+        ------------------------------------------------------------------------------->
+
+        <div class="row">
+            <div class="col-4">
+                <button type="button" class="btn btn-warning" id="visualizedata" name="visualizedata" data-toggle="modal" data-target="#exampleModalCenter">Help me! <i class="far fa-question-circle"></i></button>
+                <button type="button" class="btn btn-info" id="datainput" name="datainput" onclick="newTempData(retrievedDate, retrievedMaxTemp, retrievedMinTemp);">Import Your Data! <i class="fas fa-cloud-upload-alt"></i></button>
+            </div>
+            <div class="col-8">
+                <div class="input-group mb-3">
+                    <select class="custom-select" id="arr" onChange="change()">
+                        <option disabled="Schools" selected>Click Here For School List</option>
+                    </select>
+                    <div class="input-group-append">
+                        <label class="input-group-text" for="inputGroupSelect02">Options</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Help me!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                    </div>
+                    <div class="modal-body">
+                        Click on a location marker or a school in the drop down list to set it as your location and upload data.
+                        <br> To change the colour filter, check the box and click the 'submit' button.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Got it!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <div id="map"></div>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-analytics.js"></script>
+
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGUx1IjTWNwBQqAdyRt0C6FweU8g23lQM&callback=initMap">
+        </script>
+        <script src="https://maps.googleapis.com/maps/AIzaSyBGUx1IjTWNwBQqAdyRt0C6FweU8g23lQM/js?sensor=false"></script>
+        <script>
+            $('#exampleModalCenter').on('shown.bs.modal', function() {
+                $('#myInput').trigger('focus')
+            })
+            var citymap = []
+
+            var locValue = "";
+            var key = "";
+            var dataDict = {}
+            var keyPathValue = "";
+            var retrievedDate;
+            var retrievedMinTemp = -500;
+            var retrievedMaxTemp = -500;
+            window.onload = retrieveData();
+            //retrieves micro:bit data from import data function
+            function retrieveData() {
+                dataDict = JSON.parse(localStorage.getItem("dataDict"));
+                if (retrievedMaxTemp === null) {
+                    retrievedMaxTemp = dataDict[Object.keys(dataDict)[0]];
+
+                    return retrievedMaxTemp;
+                }
+                if (retrievedMinTemp === null) {
+                    retrievedMinTemp = dataDict[Object.keys(dataDict)[0]];
+
+                    return retrievedMinTemp;
+                }
+                for (var key in dataDict) {
+                    if (dataDict[key] < retrievedMinTemp) {
+                        retrievedMinTemp = dataDict[key];
+                    }
+                    if (dataDict[key] > retrievedMaxTemp) {
+                        retrievedMaxTemp = dataDict[key];
+                    }
+                    retrievedDate = key;
+
+                }
+            }
+
+            console.log("retrieved date: " + retrievedDate);
+            console.log("retrieved min temp: " + retrievedMinTemp);
+            console.log("retrieved max temp: " + retrievedMaxTemp);
+
+            function getCheckValue() {
+                var checkValue = document.getElementById("colour").checked;
+                localStorage.setItem("checkValue", checkValue);
+                // console.log(checkValue);
+            }
+            //alert(document.getElementById("colour").checked);
+            // Your web app's Firebase configuration
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            var firebaseConfig = {
+                apiKey: "AIzaSyDZD2IcDJn3aZ7v3CJ4HDh1_NRpPGcV8f8",
+                authDomain: "microbitdatavisualization.firebaseapp.com",
+                databaseURL: "https://microbitdatavisualization-default-rtdb.firebaseio.com",
+                projectId: "microbitdatavisualization",
+                storageBucket: "microbitdatavisualization.appspot.com",
+                messagingSenderId: "148549104317",
+                appId: "1:148549104317:web:15c889eac8c44cca41bdd4",
+                measurementId: "G-26GSC30JQ9"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            firebase.analytics();
+
+            let schoolName = [];
+            let latlng = [];
+            var select = document.getElementById("arr");
+
+            function initList() {
+
+                for (const school in citymap) {
+                    var optn = school.name;
+                    var el = document.createElement("option");
+                    el.textContent = optn;
+                    el.value = optn;
+                    select.appendChild(el);
+                }
+            }
+
+
+            function change() {
+
+                locValue = arr.selectedIndex - 1;
+                selectedSchoolName = citymap[locValue];
+                console.log(selectedSchoolName);
+                console.log(locValue);
+                var latlong = new google.maps.LatLng(latlng[locValue][0], latlng[locValue][1]);
+                console.log(latlong);
+                map.panTo(latlong);
+                map.setZoom(14);
+
+            }
+            //Initializes the map feature
+            function initMap() {
+
+                var center = new google.maps.LatLng(45.47187072210519, -75.5211423934166);
+
+                map = new google.maps.Map(document.getElementById('map'), {
+                    center: center,
+                    zoom: 12,
+                    mapTypeId: 'roadmap'
+                });
+
+
+
+
+                var minCircles = [];
+                var maxCircles = [];
+                var markers = [];
+                createCircles();
+                //Creates a list of Circle objects to display on the map in locations found in database.
+                //Using minTemp to determine the colour of the circle with getCircleColour()
+                function createCircles() {
+                    for (const city in citymap) {
+                        // Add the circle for this city to the map.
+                        minCircles.push(
+                            new google.maps.Circle({
+                                strokeColor: chooseColourScheme(citymap[city].minTemp),
+                                strokeOpacity: 0.8,
+                                strokeWeight: 2,
+                                fillColor: chooseColourScheme(citymap[city].minTemp),
+                                fillOpacity: 0.35,
+                                map,
+                                center: citymap[city].location,
+                                radius: 200,
+                            }))
+
+                        //Creates a list of Circle objects to display on the map in locations found in database.
+                        //Using maxTemp to determine the colour of the circle with getCircleColour()
+
+                        maxCircles.push(
+                            new google.maps.Circle({
+                                strokeColor: chooseColourScheme(citymap[city].maxTemp),
+                                strokeOpacity: 0.8,
+                                strokeWeight: 2,
+                                fillColor: chooseColourScheme(citymap[city].maxTemp),
+                                fillOpacity: 0.35,
+                                map,
+                                center: citymap[city].location,
+                                radius: 250,
+                            }))
+
+                        markers.push(new google.maps.Marker({
+                            position: citymap[city].location,
+                            map: map
+                        }))
+                    }
+                } //creates an addlistener and an infowindow (to display school info) for each marker at a school location
+                citymap.forEach((city, index) => {
+                        const mark = markers[index];
+                        new google.maps.event.addListener(mark, 'click', function() {
+                            locValue = city.index;
+                            console.log(locValue);
+
+                            new google.maps.InfoWindow({
+                                content: '<div><strong>Name: ' + city.name + '</strong><br>' +
+                                    '<div><strong> Number: ' + city.number + '</strong></div>' +
+                                    '<div><strong> Province: ' + city.province + '</strong></div>' +
+                                    '<div><strong> City: ' + city.city + '</strong></div>' +
+                                    '<div><strong> Address: ' + city.address + '</strong></div>' +
+                                    '<div><strong> Min temp: ' + city.minTemp + '</strong></div>' +
+                                    '<div><strong> Max temp: ' + city.maxTemp + '</strong></div>'
+                            }).open(map, this);
+                        });
+                    })
+                    //loads colour blind scheme if box is checked or default colour scheme if left unchecked
+                function chooseColourScheme(temp) {
+
+                    var checked = localStorage.getItem("checkValue");
+
+                    if (checked == "true") {
+                        document.getElementById("colour").checked = true;
+                    } else if (checked = "false") {
+                        document.getElementById("colour").checked = false;
+                    }
+                    if (checked == "true") {
+                        return getCircleColourCB(temp);
+                    } else return getCircleColour(temp);
+                };
+
+            }
+
+
+
+            //Takes user selected location and inserts user temp into the location in the database
+
+
+            function newTempData(dataDict, tempHigh, tempLow) {
+
+                // ---------------------- ReCAPTCHA validation ---------------------
+                // Need to run the server to make ReCAPTCHA works
+
+                // document.getElementById('captcha').innerHTML = "";
+                // document.getElementById('captcha2').innerHTML = "";
+                // var res = grecaptcha.getResponse();
+                // if(res.length == 0) {
+                //     document.getElementById('captcha').innerHTML="Please verify that you not a robot";
+                //     alert("Please verify that you are not a robot!")
+                //     return false
+                // } else {
+                //     document.getElementById('captcha2').innerHTML="You are human :)";
+                // -------------------------------------------------------------------
+
+                var today = new Date();
+
+                console.log("max: " + tempHigh + "min: " + tempLow);
+                if ((tempLow === null || tempLow === undefined) || (tempHigh === null || tempHigh === undefined)) {
+                    alert("No data is being uploaded, please try again");
+                    return;
+                }
+                if (locValue) {
+                    console.log("Key newtmepdata: " + locValue);
+
+                    var schoolRef = firebase
+                        .database()
+                        .ref("locations/" + locValue)
+                        .update({
+                            min_temp: tempLow,
+                            max_temp: tempHigh
+                        });
+                    // var database = firebase
+                    //     .database()
+                    //     .ref("TemperatureData/")
+                    //     .push()
+                    //     .set({
+                    //         dataDict
+                    //     });
+                    alert("Minimum and Maximum temperature updated!");
+                } else {
+                    alert("Please select a location before uploading your data.");
+                }
+
+            }
+            //Returns CSS code colour based on temperature
+            function getCircleColour(temp) {
+                /*
+                Colour codes:
+                -500 default value to white display
+                Red: "#FF0000" (30 +)
+                Dark Orange: "#FF8C00" ( 24 -> 29)
+                Gold: "#FFD700" (18 -> 23)
+                GreenYellow: "#ADFF2F" (11 -> 17)
+                Dark Green: "#006400" (+4 -> 10)
+                Aqua: "#00FFFF" (-2 -> + 3)
+                Light Blue: "#ADD8E6" (-8 -> -3)
+                Blue: "#0000FF" (-14 -> -9)
+                Dark Blue: "#00008B" (-20 -> -15)
+                Black: "#000000" (-21 and colder)
+                GhostWhite: "#F8F8FF"
+                */
+                if (temp == -500) {
+                    return "#ffffff";
+                } else if (temp <= -21) {
+                    return "#000000";
+                } else if (temp <= -15) {
+                    return "#00008B";
+                } else if (temp <= -9) {
+                    return "#0000FF";
+                } else if (temp <= -3) {
+                    return "#00FFFF";
+                } else if (temp <= 3) {
+                    return "#ADD8E6";
+                } else if (temp <= 10) {
+                    return "#006400";
+                } else if (temp <= 17) {
+                    return "#ADFF2F";
+                } else if (temp <= 23) {
+                    return "#FFD700";
+                } else if (temp <= 29) {
+                    return "#FF8C00";
+                } else if (temp > 20) {
+                    return "#FF0000";
+                } else return "#F8F8FF";
+            }
+
+            //Returns CSS code colour based on temperature Colour Blind Version
+            function getCircleColourCB(temp) {
+                /*
+                Colour codes:
+                -500 default value to white display
+                "#EDF13B" (30 +)
+                 "#9BFDD2" ( 24 -> 29)
+                 "#38FBD2" (18 -> 23)
+                "#72C7B7" (11 -> 17)
+                 "#AFC192" (+4 -> 10)
+                 "#798A66" (-2 -> + 3)
+                 "#5F5B45" (-8 -> -3)
+                "#29402B" (-14 -> -9)
+                 "#093328" (-20 -> -15)
+                 "#000000" (-21 and colder)
+                GhostWhite: "#F8F8FF"
+                */
+                if (temp == -500) {
+                    return "#ffffff";
+                } else if (temp <= -21) {
+                    return "#000000";
+                } else if (temp <= -15) {
+                    return "#093328";
+                } else if (temp <= -9) {
+                    return "#29402B";
+                } else if (temp <= -3) {
+                    return "#5F5B45";
+                } else if (temp <= 3) {
+                    return "#798A66";
+                } else if (temp <= 10) {
+                    return "#AFC192";
+                } else if (temp <= 17) {
+                    return "#72C7B7";
+                } else if (temp <= 23) {
+                    return "#38FBD2";
+                } else if (temp <= 29) {
+                    return "#9BFDD2";
+                } else if (temp > 29) {
+                    return "#EDF13B";
+                } else return "#F8F8FF";
+            }
+
+
+            var database = firebase.database();
+            //access database and gather all records, creating an object with location, minTemp, maxTemp, location, school name, school number, city, province, address and index number
+            var locationRef = firebase.database().ref("locations/").once('value').then((snapshot) => {
+                var data = snapshot.val()
+                var idx = 0;
+
+                data.forEach(element => {
+                    console.log(element)
+
+                    latlng.push([element.lat, element.lng]);
+                    var optn = element.School_Name;
+                    var el = document.createElement("option");
+                    el.textContent = optn;
+                    el.value = optn;
+                    select.appendChild(el);
+                    citymap.push({
+                        location: new google.maps.LatLng(element.lat, element.lng),
+                        address: element.Street,
+                        number: element.School_Number,
+                        minTemp: element.min_temp,
+                        maxTemp: element.max_temp,
+                        name: element.School_Name,
+                        city: element.City,
+                        province: element.Province,
+                        index: idx
+                    });
+                    idx = idx + 1;
+
+
+                });
+
+                initMap();
+
+
+            });
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
+        <p>
+            <style>
+                table {
+                    font-family: arial, sans-serif;
+                    border-collapse: collapse;
+                    width: 100%;
+                }
+                
+                td,
+                th {
+                    border: 1px solid #dddddd;
+                    text-align: left;
+                    padding: 8px;
+                }
+                
+                tr:nth-child(even) {
+                    background-color: #dddddd;
+                }
+            </style>
+
+
+            <br>
+            <h2>Colour Reference Chart</h2>
+            <br>
+
+            <table>
+                <tr>
+                    <th>Standard Colour</th>
+                    <th>Colour-blind filter Colour</th>
+                    <th>Temperature Range</th>
+
+                </tr>
+                <tr>
+                    <td style="background-color:#FF0000"></td>
+                    <td style="background-color:#EDF13B"></td>
+                    <td>(+30 and up)</td>
+
+                </tr>
+                <tr>
+                    <td style="background-color:#FF8C00"></td>
+                    <td style="background-color:#9BFDD2"></td>
+                    <td>(+24 -> +29)</td>
+
+                </tr>
+                <tr>
+                    <td style="background-color:#FFD700"></td>
+                    <td style="background-color:#38FBD2"></td>
+                    <td>(+18 -> +23)</td>
+
+                </tr>
+                <tr>
+                    <td style="background-color:#ADFF2F"></td>
+                    <td style="background-color:#72C7B7"></td>
+                    <td>(+11 -> +17)</td>
+
+                </tr>
+                <tr>
+                    <td style="background-color:#006400"></td>
+                    <td style="background-color:#AFC192"></td>
+                    <td>(+4 -> +10)</td>
+
+                </tr>
+                <tr>
+                    <td style="background-color:#ADD8E6"></td>
+                    <td style="background-color:#798A66"></td>
+                    <td>(-2 -> + 3)</td>
+                </tr>
+                <tr>
+                    <td style="background-color:#00FFFF"></td>
+                    <td style="background-color:#5F5B45"></td>
+                    <td>(-8 -> -3)</td>
+                </tr>
+                <tr>
+                    <td style="background-color:#0000FF"></td>
+                    <td style="background-color:#29402B"></td>
+                    <td>(-14 -> -9)</td>
+                </tr>
+                <tr>
+                    <td style="background-color:#00008B"></td>
+                    <td style="background-color:#093328"></td>
+                    <td>(-20 -> -15)</td>
+                </tr>
+                <tr>
+                    <td style="background-color:#000000"></td>
+                    <td style="background-color:#000000"></td>
+                    <td>(-21 and colder)</td>
+                </tr>
+            </table>
+        </p>
+    </div>
+</body>

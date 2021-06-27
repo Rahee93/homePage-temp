@@ -1,0 +1,36 @@
+.ContactUsPage {
+  width: 100%;
+  height: auto;
+  &-banner {
+    position: absolute;
+    left: 0;
+    background-image: linear-gradient(
+        to right bottom,
+        rgba(197, 11, 166, 0.7),
+        rgba(166, 255, 0, 0.7)
+      ),
+      url("https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE25mkU?ver=d8b9&q=90&m=6&h=405&w=720&b=%23FFFFFFFF&l=f&o=t");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+
+    width: 100vw;
+    height: 500px;
+
+    &__title {
+      margin: auto;
+      font-size: 6rem;
+      color: #fff;
+      text-transform: uppercase;
+    }
+  }
+
+  &-content {
+    padding-top: 550px;
+    max-width: 730px;
+    margin: 0 auto;
+    text-align: left;
+  }
+}

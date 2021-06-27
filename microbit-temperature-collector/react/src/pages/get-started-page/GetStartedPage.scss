@@ -1,0 +1,42 @@
+.GetStartedPage {
+  &-banner {
+    background-image: linear-gradient(
+        to right bottom,
+        rgba(79, 150, 192, 0.2),
+        rgba(151, 121, 121, 0.6)
+      ),
+      url("https://images.unsplash.com/photo-1504309092620-4d0ec726efa4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 auto;
+    width: 100vw;
+    height: 300px;
+
+    &__title {
+      margin: auto;
+      font-size: 6rem;
+      color: #fff;
+      text-transform: uppercase;
+    }
+  }
+  &-stepper {
+    flex: 1 0 auto;
+    width: 80%;
+    align-self: center;
+    &-actions{
+      margin-top: 8px;
+      margin-bottom: 16px;
+      &-button {
+        margin-top: 8px;
+        margin-right: 8px;
+        font-family: Boogaloo;
+      }
+    }
+  }
+  &-reset {
+    padding:24px;
+  }
+}
