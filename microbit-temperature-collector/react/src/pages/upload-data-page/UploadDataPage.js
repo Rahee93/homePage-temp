@@ -18,7 +18,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
-import { database } from "../../firebase/firebase";
+import { firestore, convertCollectionsSnapshotToMap } from "../../firebase/firebase";
 import Grid from '@material-ui/core/Grid';
 import LinkOffIcon from '@material-ui/icons/LinkOff';
 import LinkIcon from '@material-ui/icons/Link';
@@ -126,24 +126,18 @@ class UploadDataPage extends React.Component {
       }
     });
     // TODO still loading from theold databse, need to change after merging the database
-    database.ref("locations/").once('value').then((snapshot) => {
-      const data = snapshot.val()
-      console.log(data)
-      this.setState({
-        schoolData: {
-          schooleList: data.map((school, index) => ({ value: index, label: school.School_Name}) ).sort((a, b) => {
-            if(a.label > b.label) {
-              return 1;
-            } else if(a.label < b.label){
-              return -1
-            } else {
-              return 0;
-            }
-          }),
-          loadingSchooleList: false
-        }
+    firestore
+      .collection("temperature-collector-school-list")
+      .orderBy("School_Name", "asc")
+      .get()
+      .then((snapshot) => {
+        this.setState({
+          schoolData: {
+            schooleList: snapshot.docs.map((doc) => ({ value: doc.id, label: doc.get('School_Name') })),
+            loadingSchooleList: false
+          }
+        });
       });
-    });
   }
 
   componentDidMount() {
@@ -226,8 +220,22 @@ class UploadDataPage extends React.Component {
       if(this.schoolId !== null && this.schoolId !== undefined) {
         try {
           // upload data to firebase
-          // TODO need to finish after merging the firebase. Add a loading ui when uploading, and show message after uploading
-          window.alert('School name: ' + (this.state.schoolData.schooleList.find((i) => i.value === this.schoolId)).label + '\n' + JSON.stringify(this.state.temperatureData));
+          console.log('School name: ' + (this.state.schoolData.schooleList.find((i) => i.value === this.schoolId)).label + '\n' + JSON.stringify(this.state.temperatureData));
+          // start uploading
+          this.setState({
+            uploadDataState:{
+              uploading: true
+            }
+          });
+          const doc = firestore.collection("temperature-collector-temperature-data").doc(this.schoolId);
+          const docSnapShot = await doc.get();
+          if(docSnapShot.exists) {
+
+          } else {
+            await doc.set(this.state.temperatureData);
+          }
+
+          // uploaded
           this.setState({
             uploadDataState:{
               uploaded: true,
