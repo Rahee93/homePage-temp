@@ -12,6 +12,7 @@
     "@turf/turf": "^6.3.0",
     "bootstrap": "^4.6.0",
     "firebase": "^8.2.9",
+    "google-map-react": "^2.1.10",
     "mapbox-gl": "^1.9.0",
     "moment": "^2.29.1",
     "node-sass": "^4.14.1",
