@@ -25,7 +25,7 @@ function getSteps() {
     'Download The Program',
     'Upload Program to Your Micro:bit',
     'Now Shake your Micro:bit!',
-    'Your Micro:bit is now Ready',
+    'Your Micro:bit is now Ready to Record Temperature',
     'Upload Temperature Data to Our Server'
   ];
 }
@@ -33,26 +33,27 @@ function getSteps() {
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return <>Please click <a href="https://firebasestorage.googleapis.com/v0/b/microbit-terry-fox-90137.appspot.com/o/temperature_collector.hex?alt=media&token=bf3e4de1-4368-4b31-8100-64c6be5a293d">here</a> to download the .hex temperature collector program.</>;
+      return <>Please click <a href="https://firebasestorage.googleapis.com/v0/b/microbit-terry-fox-90137.appspot.com/o/temperature_collector.hex?alt=media&token=f15d210a-ce78-410f-a8ec-b460d9c60f8d">here</a> to download the .hex temperature collector program.</>;
     case 1:
-      return <><p>Connect your Micro:bit to a USB port on your computer.</p>
-            <p>Drag and drop the .hex temperature collector programm from the location where you downloaded to your Micro:bit.</p>
+      return <><p>- Connect your Micro:bit to a USB port on your computer</p>
+            <p>- Drag and drop the .hex temperature collector programm from the location where you downloaded to your Micro:bit</p>
+            <p>- After transfering the program to Micro:bit, you can see a happy face on your Micro:bit</p>
             </>;
     case 2:
-      return <>
-        <p>After transfering the program to Micro:bit, you can see a happy face on your Micro:bit,</p> 
-        <p>now try to shake your Micro:bit, you should see current room temperature on the screen, like:</p>
+      return <> 
+        <p>Now try to shake your Micro:bit, you should see current room temperature on the screen, like:</p>
         <img src={microbitTemperature}>
         </img>
       </>;
     case 3: 
       return <><p>- Now you are ready to collect the temperature, please first connect your Micro:bit to a power source like batteries</p>
-      <p>- Press Button B on your Micro:bit to start recording temperature when you are ready</p>
-      <p>- Temperature data is collected daily, and it is better to keep your Micro:bit for at least 5 days to record meaningful data</p>
-      <p><DoneAllIcon style={{ color: green[500] }}/> Please make sure you upload the data before you start recording again, because it will overwrite your previously recorded data</p></>
+      <p>- Press button "B" on your Micro:bit to start recording temperature when you are ready</p>
+      <p>- After you complete recording, press button "B" to stop recording</p>
+      <p><DoneAllIcon style={{ color: green[500] }}/> Please <b>do not</b> start recording again before you upload the data, becuase it will overwrite your previously recorded data</p>
+      <p>- Temperature data is collected daily, and it is better to keep your Micro:bit for more than 5 days to record meaningful data</p></>
     case 4:
       return <>
-        <p>After your Micro:bit have recorded some temperature data, you can upload your temperature data to our server, please go to <Link to='/upload-data'>Upload Temperature Data</Link> page for details.</p>
+        <p>When you are ready to upload your temperature data to our server, please go to <Link to='/upload-data'>Upload Temperature Data</Link> page for details.</p>
       </>
     default:
       return 'Unknown step';

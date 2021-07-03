@@ -402,7 +402,7 @@ class UploadDataPage extends React.Component {
       label: 'Upload Data',
       content : <>
       <Typography className='UploadDataPage-content-step-text'>
-        { this.state.uploadDataState.uploading ? 'Uploading Data' : this.state.uploadDataState.uploaded ? <>Your temperature data is uploaded! <CheckCircleIcon style={{ color: green[500] }}/></> : 'Now you can press the button A on your Micro:bit to upload the data' }
+        { this.state.uploadDataState.uploading ? 'Uploading Data' : this.state.uploadDataState.uploaded ? <>Your temperature data is uploaded! <CheckCircleIcon style={{ color: green[500] }}/></> : 'Now you can press the button "A" on your Micro:bit to upload the data' }
       </Typography>
       { this.state.uploadDataState.uploading ? <CircularProgress color="secondary" /> : this.state.uploadDataState.uploade ? null : null }
     </>

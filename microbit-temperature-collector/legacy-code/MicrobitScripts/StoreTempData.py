@@ -69,7 +69,8 @@ def main():
             uart.write('-1')
     if button_b.was_pressed():
         if recording:
-            display.scroll("IN RECORDING")
+            display.scroll("STOP RECORDING")
+            recording = False
         else:
             # before recording, remove the old file
             try:
