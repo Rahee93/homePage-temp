@@ -15,6 +15,8 @@ import { Link } from "react-router-dom";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import ScrollTop from "../../components/scroll-top/ScrollTop";
+import DoneAllIcon from '@material-ui/icons/DoneAll';
+import green from '@material-ui/core/colors/green';
 import microbitTemperature from "../../assets/photo/temperature.png";
 import "./GetStartedPage.scss";
 
@@ -31,7 +33,7 @@ function getSteps() {
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return <>Please click <a href="">here</a> to download the .hex temperature collector program.</>;
+      return <>Please click <a href="https://firebasestorage.googleapis.com/v0/b/microbit-terry-fox-90137.appspot.com/o/temperature_collector.hex?alt=media&token=bf3e4de1-4368-4b31-8100-64c6be5a293d">here</a> to download the .hex temperature collector program.</>;
     case 1:
       return <><p>Connect your Micro:bit to a USB port on your computer.</p>
             <p>Drag and drop the .hex temperature collector programm from the location where you downloaded to your Micro:bit.</p>
@@ -44,12 +46,13 @@ function getStepContent(step) {
         </img>
       </>;
     case 3: 
-      return <><p>Now you are ready to collect the temperature, please first connect your Micro:bit to a power source like batteries</p>
-      <p>Press Button B on your Micro:bit to start recording temperature</p>
-      <p>It is better to keep your Micro:bit for at least 5 days to record meaningful data</p></>
+      return <><p>- Now you are ready to collect the temperature, please first connect your Micro:bit to a power source like batteries</p>
+      <p>- Press Button B on your Micro:bit to start recording temperature when you are ready</p>
+      <p>- Temperature data is collected daily, and it is better to keep your Micro:bit for at least 5 days to record meaningful data</p>
+      <p><DoneAllIcon style={{ color: green[500] }}/> Please make sure you upload the data before you start recording again, because it will overwrite your previously recorded data</p></>
     case 4:
       return <>
-        <p>After recording the temperature, you now can upload your temperature data to our server, please go to <Link to='/upload-data'>Upload Temperature Data</Link> page for details.</p>
+        <p>After your Micro:bit have recorded some temperature data, you can upload your temperature data to our server, please go to <Link to='/upload-data'>Upload Temperature Data</Link> page for details.</p>
       </>
     default:
       return 'Unknown step';
