@@ -26,10 +26,37 @@ firebase.initializeApp(firebaseConfig);
 
 export const firestore = firebase.firestore();
 
-export const convertCollectionsSnapshotToMap = (collections) => {
-  let transformedCollection = [];
-  collections.docs.forEach((doc) => transformedCollection.push(doc.data()));
-  return transformedCollection;
-};
+export const loadSchoolList = async () => {
+  let schoolListSnapShot;
+  if(window.top && window.top.schoolListSnapShot && window.top.schoolListSnapShot.docs) {
+    return window.top.schoolListSnapShot;
+  } else {
+    schoolListSnapShot = await firestore
+      .collection("temperature-collector-school-list")
+      .orderBy("School_Name", "asc")
+      .get();
+    if(window.top) {
+      // store the school list data so do not need to fetch every time
+      window.top.schoolListSnapShot = schoolListSnapShot
+    }
+    return schoolListSnapShot;
+  }
+}
+
+export const loadTemperatureData= async () => {
+  let temperatureDataSnapshot;
+  if(window.top && window.top.temperatureDataSnapshot && window.top.temperatureDataSnapshot.docs) {
+    return window.top.temperatureDataSnapshot;
+  } else {
+    temperatureDataSnapshot = await firestore
+      .collection("temperature-collector-temperature-data")
+      .get();
+    if(window.top) {
+      // store the temperatureData so do not need to fetch every time
+      window.top.temperatureDataSnapshot = temperatureDataSnapshot
+    }
+    return temperatureDataSnapshot;
+  }
+}
 
 export default firebase;

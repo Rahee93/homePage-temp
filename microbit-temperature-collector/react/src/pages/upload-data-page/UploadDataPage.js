@@ -18,7 +18,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
-import { firestore } from "../../firebase/firebase";
+import { loadSchoolList, firestore } from "../../firebase/firebase";
 import Grid from '@material-ui/core/Grid';
 import LinkOffIcon from '@material-ui/icons/LinkOff';
 import LinkIcon from '@material-ui/icons/Link';
@@ -120,7 +120,7 @@ class UploadDataPage extends React.Component {
     })
   }
 
-  fetchSchoolList = () => {
+  fetchSchoolList = async () => {
     // loading the school list
     this.setState({
       schoolData: {
@@ -129,18 +129,13 @@ class UploadDataPage extends React.Component {
       }
     });
     // load school list data
-    firestore
-      .collection("temperature-collector-school-list")
-      .orderBy("School_Name", "asc")
-      .get()
-      .then((snapshot) => {
-        this.setState({
-          schoolData: {
-            schooleList: snapshot.docs.map((doc) => ({ value: doc.id, label: doc.get('School_Name') })),
-            loadingSchooleList: false
-          }
-        });
-      });
+    const schoolListSnapShot = await loadSchoolList();
+    this.setState({
+      schoolData: {
+        schooleList: schoolListSnapShot.docs.map((doc) => ({ value: doc.id, label: doc.get('School_Name') })),
+        loadingSchooleList: false
+      }
+    });
   }
 
   componentDidMount() {
