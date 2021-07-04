@@ -6,7 +6,7 @@ import Header from "../../components/header/Header";
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import { firestore } from "../../firebase/firebase";
+import { loadSchoolList, loadTemperatureData } from "../../firebase/firebase";
 const defaultZoom = 12;
 const OTTAWA_CENTER = { lat: 45.4215, lng: -75.6972 };
 
@@ -34,11 +34,7 @@ class MapPage extends Component {
       }
     });
 
-    // TODO store the schoolListSnapshot so do not need to fetch every time
-    const schoolListSnapshot = await firestore
-      .collection("temperature-collector-school-list")
-      .orderBy("School_Name", "asc")
-      .get();
+    const schoolListSnapshot = await loadSchoolList();
 
     const schooleList = {};
     schoolListSnapshot.forEach((doc) => {
@@ -59,9 +55,7 @@ class MapPage extends Component {
       }
     });
 
-    const temperatureDataSnapshot = await firestore
-      .collection("temperature-collector-temperature-data")
-      .get();
+    const temperatureDataSnapshot = await loadTemperatureData();
 
     const temperatureDataBySchool = {};
     temperatureDataSnapshot.forEach((doc) => {
