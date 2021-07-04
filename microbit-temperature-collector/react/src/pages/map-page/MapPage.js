@@ -6,6 +6,9 @@ import Header from "../../components/header/Header";
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import IconButton from '@material-ui/core/IconButton';
+import InfoDialog from './ColorsDialog';
+import ColorLensIcon from '@material-ui/icons/ColorLens';
 import { firestore } from "../../firebase/firebase";
 const defaultZoom = 12;
 const OTTAWA_CENTER = { lat: 45.4215, lng: -75.6972 };
@@ -22,7 +25,9 @@ class MapPage extends Component {
     temperatureData: {
       loadingTemperatureData: false,
       temperatureDataBySchool: []
-    }
+    },
+    colorBlindMode: false,
+    infoDialogOpen: false
   }
 
   fetchData = async () => {
@@ -223,11 +228,18 @@ class MapPage extends Component {
     }
   }
 
+  openInfoDialog = (open) => {
+    this.setState({
+      infoDialogOpen: open
+    })
+  }
+
+  
   render() {
     return (
       <StylesProvider injectFirst>
         <Header />
-        <div style={{padding: '0 50px', display: 'flex', justifyContent:'space-between'}}>
+        <div style={{padding: '0 50px', display: 'flex', justifyContent:'space-between', alignItems: 'center'}}>
           <Autocomplete
             value={this.state.currentSelectedSchoolId}
             getOptionSelected={(option, value) => option.value === value}
@@ -244,8 +256,11 @@ class MapPage extends Component {
             style={{width: '50%' }}
             renderInput={(params) => <TextField {...params} label="School" variant="outlined" margin="normal" />}
           />
+          <IconButton color="primary" aria-label="Info" onClick = {() => this.openInfoDialog(true)}>
+            <ColorLensIcon />
+          </IconButton>
         </div>
-        <div style={{ alignSelf: 'center', height: `${this.state.mapHeight}px`, padding: '0 50px', width: '100%' }}>
+        <div style={{ height: `${this.state.mapHeight}px`, padding: '0 50px', width: '100%' }}>
           <GoogleMapReact
             defaultZoom={defaultZoom}
             defaultCenter={OTTAWA_CENTER}
@@ -254,6 +269,16 @@ class MapPage extends Component {
             onGoogleApiLoaded={({ map, maps }) => this.handleApiLoaded(map, maps)}
           ></GoogleMapReact>
         </div>
+        <InfoDialog
+          open={this.state.infoDialogOpen}
+          onClose={() => this.openInfoDialog(false)}
+          colorBlindMode={this.state.colorBlindMode}
+          toggleColorBlidMode={() => {
+            this.setState({
+              colorBlindMode: !this.state.colorBlindMode
+            });
+          }}
+        />
       </StylesProvider>
     );
   }
