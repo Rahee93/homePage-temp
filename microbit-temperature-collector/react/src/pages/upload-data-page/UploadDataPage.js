@@ -129,10 +129,10 @@ class UploadDataPage extends React.Component {
       }
     });
     // load school list data
-    const schooleListSnapShot = await loadSchoolList();
+    const schoolListSnapShot = await loadSchoolList();
     this.setState({
       schoolData: {
-        schooleList: schooleListSnapShot.docs.map((doc) => ({ value: doc.id, label: doc.get('School_Name') })),
+        schooleList: schoolListSnapShot.docs.map((doc) => ({ value: doc.id, label: doc.get('School_Name') })),
         loadingSchooleList: false
       }
     });

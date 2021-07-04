@@ -27,19 +27,19 @@ firebase.initializeApp(firebaseConfig);
 export const firestore = firebase.firestore();
 
 export const loadSchoolList = async () => {
-  let schooleListSnapShot;
-  if(window.top && window.top.schooleListSnapShot && window.top.schooleListSnapShot.docs) {
-    return window.top.schooleListSnapShot;
+  let schoolListSnapShot;
+  if(window.top && window.top.schoolListSnapShot && window.top.schoolListSnapShot.docs) {
+    return window.top.schoolListSnapShot;
   } else {
-    schooleListSnapShot = await firestore
+    schoolListSnapShot = await firestore
       .collection("temperature-collector-school-list")
       .orderBy("School_Name", "asc")
       .get();
     if(window.top) {
       // store the school list data so do not need to fetch every time
-      window.top.schooleListSnapShot = schooleListSnapShot
+      window.top.schoolListSnapShot = schoolListSnapShot
     }
-    return schooleListSnapShot;
+    return schoolListSnapShot;
   }
 }
 
