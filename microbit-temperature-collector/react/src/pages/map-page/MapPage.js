@@ -9,7 +9,8 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import IconButton from '@material-ui/core/IconButton';
 import InfoDialog from './ColorsDialog';
 import ColorLensIcon from '@material-ui/icons/ColorLens';
-import SchoolDetailsSlideOut from './SchoolDetailsSlideOut';
+import SchoolDetailsSlideOut, { calculateMaxAndMinTemperature } from './SchoolDetailsSlideOut';
+import { findColor } from './Colors';
 import { loadSchoolList, loadTemperatureData } from "../../firebase/firebase";
 const defaultZoom = 12;
 const OTTAWA_CENTER = { lat: 45.4215, lng: -75.6972 };
@@ -148,9 +149,6 @@ class MapPage extends Component {
     this.map.panTo(OTTAWA_CENTER);
   }
 
-  getColorByTemperature = (temeprature) => {
-
-  }
   schoolsToMarkers = () => {
     // clear exsiting markers
     this.clearSchoolMarkers();
@@ -174,30 +172,34 @@ class MapPage extends Component {
             this.openSlideOut(true);
           }),
         );
+        if(this.state.temperatureData.temperatureDataBySchool[schoolId]) {
+          const minMaxTemperature = calculateMaxAndMinTemperature(this.state.temperatureData.temperatureDataBySchool[schoolId]);
+          const minColor = findColor(minMaxTemperature.min)[this.state.colorBlindMode ? 'colorA' : 'color'];
+          const maxColor = findColor(minMaxTemperature.max)[this.state.colorBlindMode ? 'colorA' : 'color'];
+          //Creates Circle objects to display on the map in locations found in database.
+          //Using min and max to determine the colour of the circle with getCircleColour()
+          new this.maps.Circle({
+            strokeColor: minColor,
+            strokeOpacity: 0.7,
+            strokeWeight: 2,
+            fillColor: minColor,
+            fillOpacity: 0.35,
+            map: this.map,
+            center: position,
+            radius: 150,
+          });
 
-        //Creates Circle objects to display on the map in locations found in database.
-        //Using min and max to determine the colour of the circle with getCircleColour()
-        // new google.maps.Circle({
-        //   strokeColor: getColorByTemperature(citymap[city].minTemp),
-        //   strokeOpacity: 0.8,
-        //   strokeWeight: 2,
-        //   fillColor: getColorByTemperature(citymap[city].minTemp),
-        //   fillOpacity: 0.35,
-        //   map,
-        //   center: citymap[city].location,
-        //   radius: 200,
-        // })
-
-        // new google.maps.Circle({
-        //     strokeColor: getColorByTemperature(citymap[city].maxTemp),
-        //     strokeOpacity: 0.8,
-        //     strokeWeight: 2,
-        //     fillColor: getColorByTemperature(citymap[city].maxTemp),
-        //     fillOpacity: 0.35,
-        //     map,
-        //     center: citymap[city].location,
-        //     radius: 250,
-        // })
+          new this.maps.Circle({
+              strokeColor: maxColor,
+              strokeOpacity: 0.7,
+              strokeWeight: 2,
+              fillColor: maxColor,
+              fillOpacity: 0.35,
+              map: this.map,
+              center: position,
+              radius: 250,
+          });
+        }
 
         this.schoolMarkers[schoolId] = {
           position,
@@ -288,6 +290,8 @@ class MapPage extends Component {
             this.setState({
               colorBlindMode: !this.state.colorBlindMode
             });
+            // re render the map markers
+            this.schoolsToMarkers();
           }}
         />
         <SchoolDetailsSlideOut
