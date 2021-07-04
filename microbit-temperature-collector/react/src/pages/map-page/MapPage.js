@@ -9,6 +9,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import IconButton from '@material-ui/core/IconButton';
 import InfoDialog from './ColorsDialog';
 import ColorLensIcon from '@material-ui/icons/ColorLens';
+import SchoolDetailsSlideOut from './SchoolDetailsSlideOut';
 import { loadSchoolList, loadTemperatureData } from "../../firebase/firebase";
 const defaultZoom = 12;
 const OTTAWA_CENTER = { lat: 45.4215, lng: -75.6972 };
@@ -19,15 +20,18 @@ class MapPage extends Component {
     currentSelectedSchoolId: '',
     mapHeight: 0,
     schoolData: {
-      loadingSchooleList: false,
-      schooleList: []
+      loadingSchoolList: false,
+      schoolList: {}
     },
     temperatureData: {
       loadingTemperatureData: false,
-      temperatureDataBySchool: []
+      temperatureDataBySchool: {}
     },
     colorBlindMode: false,
-    infoDialogOpen: false
+    infoDialogOpen: false,
+    schoolSearchBoxOptions: [],
+    currentSelectedOption: null,
+    schoolDetailsSlideOutOpen: false
   }
 
   fetchData = async () => {
@@ -35,21 +39,30 @@ class MapPage extends Component {
     this.setState({
       schoolData: {
         ...this.state.schoolData,
-        loadingSchooleList: true
+        loadingSchoolList: true
       }
     });
 
-    const schoolListSnapshot = await loadSchoolList();
+    const schoolList = await loadSchoolList();
 
-    const schooleList = {};
-    schoolListSnapshot.forEach((doc) => {
-      schooleList[doc.id] = doc.data()
-    });
+    const schoolSearchBoxOptions = Object.keys(schoolList)
+      .map((schoolId) => ({value: schoolId, label: schoolList[schoolId].School_Name}))
+      .sort((a, b) => {
+        if(a.label > b.label) {
+          return 1;
+        } else if(a.label < b.label){
+          return -1
+        } else {
+          return 0;
+        }
+      });
+
     this.setState({
       schoolData: {
-        schooleList,
-        loadingSchooleList: false
-      }
+        schoolList,
+        loadingSchoolList: false
+      },
+      schoolSearchBoxOptions
     });
 
     // load temperature data
@@ -60,17 +73,12 @@ class MapPage extends Component {
       }
     });
 
-    const temperatureDataSnapshot = await loadTemperatureData();
-
-    const temperatureDataBySchool = {};
-    temperatureDataSnapshot.forEach((doc) => {
-      temperatureDataBySchool[doc.id] = doc.data()
-    });
+    const temperatureDataBySchool = await loadTemperatureData();
 
     this.setState({
       temperatureData: {
         temperatureDataBySchool,
-        loadingSchooleList: false
+        loadingSchoolList: false
       }
     });
   }
@@ -86,7 +94,7 @@ class MapPage extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.schoolData.schooleList.length !== prevState.schoolData.schooleList.length) {
+    if (this.state.schoolData.schoolList.length !== prevState.schoolData.schoolList.length) {
       // need to wait map to load
       if (this.map && this.maps) {
         this.schoolsToMarkers();
@@ -148,13 +156,13 @@ class MapPage extends Component {
     this.clearSchoolMarkers();
 
     this.schoolMarkers = {};
-    const schools = this.state.schoolData.schooleList;
+    const schools = this.state.schoolData.schoolList;
     if (schools) {
       Object.keys(schools).forEach(schoolId => {
         const school = schools[schoolId];
         const position = { lat: school.lat, lng: school.lng };
         const marker = new this.maps.Marker({
-          opacity: 0.8,
+          opacity: 0.7,
           position,
           title: school.School_Name,
           map: this.map,
@@ -163,6 +171,7 @@ class MapPage extends Component {
         markerListeners.push(
           marker.addListener('click', () => {
             this.onSelectedSchoolChange(schoolId);
+            this.openSlideOut(true);
           }),
         );
 
@@ -203,7 +212,7 @@ class MapPage extends Component {
     // unselected style
     if (this.schoolMarkers[schoolId]) {
       const { marker } = this.schoolMarkers[schoolId];
-      marker.setOpacity(0.8);
+      marker.setOpacity(0.7);
       marker.setZIndex();
     }
   }
@@ -220,23 +229,30 @@ class MapPage extends Component {
       marker.setOpacity(1);
       marker.setZIndex(this.maps.Marker.MAX_ZINDEX);
     }
+    this.setState({
+      currentSelectedOption: this.state.schoolSearchBoxOptions.find((option) => option.value === this.state.currentSelectedSchoolId)
+    });
   }
 
   openInfoDialog = (open) => {
     this.setState({
       infoDialogOpen: open
-    })
+    });
   }
 
-  
+  openSlideOut = (open) => {
+    this.setState({
+      schoolDetailsSlideOutOpen: open
+    });
+  }
+
   render() {
     return (
       <StylesProvider injectFirst>
         <Header />
         <div style={{padding: '0 50px', display: 'flex', justifyContent:'space-between', alignItems: 'center'}}>
           <Autocomplete
-            value={this.state.currentSelectedSchoolId}
-            getOptionSelected={(option, value) => option.value === value}
+            value={this.state.currentSelectedOption}
             onChange={(event, newSelectedSchool) => {
               if(newSelectedSchool) {
                 this.onSelectedSchoolChange(newSelectedSchool.value);
@@ -245,7 +261,8 @@ class MapPage extends Component {
               }
             }}
             id="school"
-            options={Object.keys(this.state.schoolData.schooleList).map((schoolId) => ({value: schoolId, label: this.state.schoolData.schooleList[schoolId].School_Name}))}
+            options={this.state.schoolSearchBoxOptions}
+            getOptionSelected={(option, value) => option.value === (value && value.value)}
             getOptionLabel={(option) => option && option.label ? option.label : ''}
             style={{width: '50%' }}
             renderInput={(params) => <TextField {...params} label="School" variant="outlined" margin="normal" />}
@@ -272,6 +289,14 @@ class MapPage extends Component {
               colorBlindMode: !this.state.colorBlindMode
             });
           }}
+        />
+        <SchoolDetailsSlideOut
+          open={this.state.schoolDetailsSlideOutOpen}
+          onClose={() => this.openSlideOut(false)}
+          schoolList={this.state.schoolData.schoolList}
+          temperatureDataBySchool={this.state.temperatureData.temperatureDataBySchool}
+          currentSelectedSchoolId={this.state.currentSelectedSchoolId}
+          colorBlindMode={this.state.colorBlindMode}
         />
       </StylesProvider>
     );

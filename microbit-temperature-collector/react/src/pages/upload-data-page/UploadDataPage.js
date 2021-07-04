@@ -129,10 +129,20 @@ class UploadDataPage extends React.Component {
       }
     });
     // load school list data
-    const schoolListSnapShot = await loadSchoolList();
+    const schoolList = await loadSchoolList();
     this.setState({
       schoolData: {
-        schooleList: schoolListSnapShot.docs.map((doc) => ({ value: doc.id, label: doc.get('School_Name') })),
+        schooleList: Object.keys(schoolList)
+          .map((schoolId) => ({value: schoolId, label: schoolList[schoolId].School_Name}))
+          .sort((a, b) => {
+            if(a.label > b.label) {
+              return 1;
+            } else if(a.label < b.label){
+              return -1
+            } else {
+              return 0;
+            }
+          }),
         loadingSchooleList: false
       }
     });

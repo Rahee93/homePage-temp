@@ -3,7 +3,7 @@ import { StylesProvider } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import amber from '@material-ui/core/colors/amber';
 import blue from '@material-ui/core/colors/blue';
-import './Colors.scss';
+import Color from './Color';
 export const colors = [
   {
     color: blue['700'],
@@ -61,20 +61,27 @@ export const colors = [
     max: Number.MAX_VALUE,
     label: '> 30 °C'
   }
-] 
+];
+
+export const findColor = (temeprature) => {
+  const foundColor = colors.find((color) => {
+    if(temeprature >= color.min && temeprature <= color.max){
+      return true;
+    }
+  });
+  if(!foundColor) {
+    foundColor = {};
+  }
+  return foundColor;
+}
 class Colors extends Component {
   render() {
     return (
-        <ul className="colors">
+        <div style={{ width: '70%'}}>
         { colors.map((color, index) =>
-          <li key={index} style={{backgroundColor: this.props.colorBlindMode ? color.colorA : color.color}} className="colors-color">
-            <Typography>
-              {color.label}
-            </Typography>
-          </li>
+          <Color key={index} color={this.props.colorBlindMode ? color.colorA : color.color} label={color.label}/>
         )}
-          
-        </ul>
+        </div>
     );
   }
 }
