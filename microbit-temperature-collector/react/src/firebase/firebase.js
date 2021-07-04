@@ -26,10 +26,21 @@ firebase.initializeApp(firebaseConfig);
 
 export const firestore = firebase.firestore();
 
-export const convertCollectionsSnapshotToMap = (collections) => {
-  let transformedCollection = [];
-  collections.docs.forEach((doc) => transformedCollection.push(doc.data()));
-  return transformedCollection;
-};
+export const loadSchoolList = async () => {
+  let schooleListSnapShot;
+  if(window.top && window.top.schooleListSnapShot && window.top.schooleListSnapShot.docs) {
+    return window.top.schooleListSnapShot;
+  } else {
+    schooleListSnapShot = await firestore
+      .collection("temperature-collector-school-list")
+      .orderBy("School_Name", "asc")
+      .get();
+    if(window.top) {
+      // store the school list data so do not need to fetch every time
+      window.top.schooleListSnapShot = schooleListSnapShot
+    }
+    return schooleListSnapShot;
+  }
+}
 
 export default firebase;
