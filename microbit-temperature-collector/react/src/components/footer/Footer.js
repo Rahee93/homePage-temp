@@ -9,7 +9,7 @@ import "./Footer.scss";
 const Footer = () => {
   return (
     <div className="Footer">
-      <div className="Footer-content">© Micro:bit Temperature Collector 2021</div>
+      {/* <div className="Footer-content">© Micro:bit Temperature Collector 2021</div> */}
     </div>
   );
 };
