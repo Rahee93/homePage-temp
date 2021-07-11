@@ -5,13 +5,17 @@ import { BrowserRouter } from "react-router-dom";
 // import "normalize.css";
 import "./index.css";
 import App from "./App";
+import { store, persistor } from "./redux/store";
 // import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.css";
+import { Provider } from "react-redux";
 
 ReactDOM.render(
+  <Provider store={store}>
     <BrowserRouter basename="/microbit-main">
         <App />
     </BrowserRouter>,
+  </Provider>,
   document.getElementById("root")
 );
 

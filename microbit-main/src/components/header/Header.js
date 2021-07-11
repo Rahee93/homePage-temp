@@ -27,7 +27,7 @@ const Header = () => {
               Home
             </Link>
             <Link to="/terry-fox-run" className="navbar-nav__item p-2">
-              TerryFox Run
+              Terry Fox Run
             </Link>
             <Link to="/temperature-collector" className="navbar-nav__item p-2">
               Temperature Collector
