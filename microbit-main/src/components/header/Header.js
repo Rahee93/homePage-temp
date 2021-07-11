@@ -13,7 +13,7 @@ import "./Header.scss";
 const Header = () => {
   return (
     <div className="header">
-      <Navbar className="navbar" bg="white" expand="lg" name="top">
+      <Navbar className="navbar" expand="lg" name="top">
         {/* <Navbar.Brand className="navbar-headers">
           <Link to="/" className="navbar-headers">
             <div className="navbar-headers__image"></div>

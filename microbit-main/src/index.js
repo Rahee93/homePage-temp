@@ -14,7 +14,7 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter basename="/microbit-main">
         <App />
-    </BrowserRouter>,
+    </BrowserRouter>
   </Provider>,
   document.getElementById("root")
 );
