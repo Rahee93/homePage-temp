@@ -18,12 +18,15 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
-import { database } from "../../firebase/firebase";
+import { loadSchoolList, firestore } from "../../firebase/firebase";
 import Grid from '@material-ui/core/Grid';
 import LinkOffIcon from '@material-ui/icons/LinkOff';
 import LinkIcon from '@material-ui/icons/Link';
 import { connectMicrobit } from './ConnectMicrobit';
 import moment from 'moment';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import green from '@material-ui/core/colors/green';
 import './UploadDataPage.scss';
 
 const ColorlibConnector = withStyles({
@@ -117,7 +120,7 @@ class UploadDataPage extends React.Component {
     })
   }
 
-  fetchSchoolList = () => {
+  fetchSchoolList = async () => {
     // loading the school list
     this.setState({
       schoolData: {
@@ -125,24 +128,13 @@ class UploadDataPage extends React.Component {
         loadingSchooleList: true
       }
     });
-    // TODO still loading from theold databse, need to change after merging the database
-    database.ref("locations/").once('value').then((snapshot) => {
-      const data = snapshot.val()
-      console.log(data)
-      this.setState({
-        schoolData: {
-          schooleList: data.map((school, index) => ({ value: index, label: school.School_Name}) ).sort((a, b) => {
-            if(a.label > b.label) {
-              return 1;
-            } else if(a.label < b.label){
-              return -1
-            } else {
-              return 0;
-            }
-          }),
-          loadingSchooleList: false
-        }
-      });
+    // load school list data
+    const schoolListSnapShot = await loadSchoolList();
+    this.setState({
+      schoolData: {
+        schooleList: schoolListSnapShot.docs.map((doc) => ({ value: doc.id, label: doc.get('School_Name') })),
+        loadingSchooleList: false
+      }
     });
   }
 
@@ -164,9 +156,6 @@ class UploadDataPage extends React.Component {
       } catch(e) {
         console.log(e);
       }
-      this.setState({
-        serial: null
-      });
     } 
   }
 
@@ -177,22 +166,22 @@ class UploadDataPage extends React.Component {
       const date = moment(this.startDate, 'YYYY-MM-DD');
       while (true) {
         const { value, done } = await reader.read();
-        // set to uploading to true when we receive the first data
-        if(!this.state.uploadDataState.uploading) {
-          this.setState({
-            uploadDataState:{
-              ...this.state.uploadDataState,
-              uploading: true
-            }
-          });
-        }
         if (done) {
           console.log("read is complete");
           break;
         }
         if(value !== '-1') {
           const intValue = parseInt(value);
-          if(intValue !== NaN) {
+          if(!isNaN(intValue)) {
+            // set to uploading to true when we receive the first data
+            if(!this.state.uploadDataState.uploading) {
+              this.setState({
+                uploadDataState:{
+                  ...this.state.uploadDataState,
+                  uploading: true
+                }
+              });
+            }
             console.log(intValue);
             if(date.isBefore(moment())) {
               this.setState({
@@ -226,8 +215,38 @@ class UploadDataPage extends React.Component {
       if(this.schoolId !== null && this.schoolId !== undefined) {
         try {
           // upload data to firebase
-          // TODO need to finish after merging the firebase. Add a loading ui when uploading, and show message after uploading
-          window.alert('School name: ' + (this.state.schoolData.schooleList.find((i) => i.value === this.schoolId)).label + '\n' + JSON.stringify(this.state.temperatureData));
+          console.log('School name: ' + (this.state.schoolData.schooleList.find((i) => i.value === this.schoolId)).label + '\n' + JSON.stringify(this.state.temperatureData));
+          // start uploading
+          const doc = firestore.collection("temperature-collector-temperature-data").doc(this.schoolId);
+          const docSnapShot = await doc.get();
+          if(docSnapShot.exists) {
+            const dates = Object.keys(this.state.temperatureData);
+            const temperatureData = {}
+            for(let i = 0; i < dates.length; i++) {
+              const date = dates[i];
+              let temperatureDataOfDate = docSnapShot.get(date);
+              if(temperatureDataOfDate) {
+                // if the temperatureDataOfDate is not array, then convert to an array
+                if(!Array.isArray(temperatureDataOfDate)) {
+                  temperatureDataOfDate = [this.state.temperatureData[date]];
+                } else {
+                  temperatureDataOfDate.push(this.state.temperatureData[date]);
+                }
+              } else {
+                temperatureDataOfDate = [this.state.temperatureData[date]];
+              }
+              temperatureData[date] = temperatureDataOfDate;
+            }
+            await doc.update(temperatureData);
+          } else {
+            // convert to array
+            Object.keys(this.state.temperatureData).forEach(date => {
+              this.state.temperatureData[date] = [this.state.temperatureData[date]];
+            });
+            await doc.set(this.state.temperatureData);
+          }
+
+          // uploaded
           this.setState({
             uploadDataState:{
               uploaded: true,
@@ -378,8 +397,9 @@ class UploadDataPage extends React.Component {
       label: 'Upload Data',
       content : <>
       <Typography className='UploadDataPage-content-step-text'>
-        Now you can press the button A on your Micro:bit to upload the data
+        { this.state.uploadDataState.uploading ? 'Uploading Data' : this.state.uploadDataState.uploaded ? <>Your temperature data is uploaded! <CheckCircleIcon style={{ color: green[500] }}/></> : 'Now you can press the button "A" on your Micro:bit to upload the data' }
       </Typography>
+      { this.state.uploadDataState.uploading ? <CircularProgress color="secondary" /> : this.state.uploadDataState.uploade ? null : null }
     </>
     }
   ]
