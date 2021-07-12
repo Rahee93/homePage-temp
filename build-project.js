@@ -16,9 +16,9 @@ async function build() {
     process.chdir(path.join(currentDir, microbitTerryFoxRunFolderName))
     await npmBuild();
 
-    // console.log("Building microbit-temperature-collector.")
-    // process.chdir("../microbit-temperature-collector")
-    // await exec('npm run winBuild');
+    console.log("Building microbit-temperature-collector.")
+    process.chdir(path.join(currentDir, microbitTemperatureCollectorFolderName, 'react'))
+    await exec('npm run winBuild');
 
     process.chdir(currentDir);
     const outputFolder = path.join(currentDir, 'microbit-build');
@@ -45,7 +45,7 @@ async function build() {
 
     copyFiles(path.join(currentDir, microbitMainFolderName, "build"), microbitMainOutputFolder);
     copyFiles(path.join(currentDir, microbitTerryFoxRunFolderName, "build"), microbitTerryFoxRunOutputFolder);
-    copyFiles(path.join(currentDir, microbitTemperatureCollectorFolderName, "legacy-code"), microbitTemperatureCollectorOutputFolder);
+    copyFiles(path.join(currentDir, microbitTemperatureCollectorFolderName, "react", "build"), microbitTemperatureCollectorOutputFolder);
     // copy _redirect
     copyFiles(path.join(currentDir, '_redirects'), path.join(outputFolder, '_redirects'));
 }

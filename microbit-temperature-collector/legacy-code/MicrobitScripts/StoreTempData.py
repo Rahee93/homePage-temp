@@ -1,12 +1,12 @@
 """
 @author Jashanjot Singh Pruthi
+@modified Team Codeck
 @resources
 1 Max-min temperature logger - https://microbit.org/projects/make-it-code-it/maxmin-temperature-logger/
 2 Local Persistent File System - https://microbit-micropython.readthedocs.io/en/v1.0.1/filesystem.html
 """
 from microbit import *
-import machine
-
+from os import remove
 name = "file"
 """
 This script will be flashed to the microbit and used to write temperature data to our file 
@@ -18,16 +18,12 @@ def get_data():
     Reads from the string file contaiing temperature values seperated by comma inside microbit and converts it into a list of temperature values
     :return: A list of all temperature values stored in file
     """
-    recordsLst = []
     try:
         with open(name) as file:
             strData = file.read()
-            x = strData.split(',')
-            for a in x:
-                recordsLst.append(a)
+            return strData.split(',')
     except OSError:
         return []
-    return recordsLst
 
 
 def set_data(recordsList):
@@ -38,38 +34,57 @@ def set_data(recordsList):
     """
     try:
         with open(name, 'wt') as f:
-            for record in recordsList:
-                f.write(str(record) + ',')
+            f.write(','.join(recordsList))
     except OSError:
         display.scroll('Cannot write to file %s' % name)
+        
+def record_temperature():
+    lst = get_data()
+    lst.append(str(temperature()))
+    set_data(lst)
 
-
+recording = False
+last_record_time = 0
+interval = 86400000 # 24 hours
 def main():
     """
     The main heart of the program that is run in an infinite while loop.
     Used to record temperature and storing temperature values in a file inside microbit storage
     :return: None
     """
+    global last_record_time
+    global recording
     if accelerometer.was_gesture('shake'):
         display.scroll(temperature())  # displays current temperature on microbit screen when shaked
     if button_a.was_pressed():
+        recording = False
         lst = get_data()
-        for temp in lst:
-            uart.write(str(temp) + '\r\n')  # sends temperature readings to computer's serial port
+        if len(lst) == 0:
+            display.scroll('NO DATA')
+        else:
+            for temp in lst:
+                uart.write(str(temp) + '\r\n')  # sends temperature readings to computer's serial port
+            display.scroll('SENDING <<<<<')
+            # send -1 means no more data
+            uart.write('-1')
     if button_b.was_pressed():
-        display.scroll("Recording Started")
-        while True:
-            if running_time() % 86400000 == 0:  # After every 24 hours, record the temperature
-                lst = get_data()
-                lst.append(str(temperature()))
-                set_data(lst)
-            if button_a.was_pressed():  # If button a is pressed on the microbit
-                lst = get_data()        # sends temperature readings to computer's serial port
-                for temp in lst:
-                    uart.write(str(temp) + '\r\n')
-            if accelerometer.was_gesture('shake'):
-                display.scroll(temperature())  # displays current temperature on microbit screen when shaked
+        if recording:
+            display.scroll("STOP RECORDING")
+            recording = False
+        else:
+            # before recording, remove the old file
+            try:
+                remove(name)
+            except OSError:
+                pass
+            display.scroll("RECORDING STARTED")
+            recording = True
+            record_temperature()
+            last_record_time = running_time()
+    if recording and running_time() >= last_record_time + interval:
+        record_temperature()
+        last_record_time = running_time()
 
-
+display.show(Image.HAPPY)
 while True:
-    main()
+   main()
