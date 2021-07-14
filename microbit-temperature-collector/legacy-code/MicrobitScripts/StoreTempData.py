@@ -62,15 +62,15 @@ def main():
         if len(lst) == 0:
             display.scroll('NO DATA')
         else:
-            display.scroll('SENDING')
             for temp in lst:
                 uart.write(str(temp) + '\r\n')  # sends temperature readings to computer's serial port
+            display.scroll('SENDING <<<<<')
             # send -1 means no more data
             uart.write('-1')
-            display.scroll('<<<<<<<<<<<<<')    
     if button_b.was_pressed():
         if recording:
-            display.scroll("IN RECORDING")
+            display.scroll("STOP RECORDING")
+            recording = False
         else:
             # before recording, remove the old file
             try:
