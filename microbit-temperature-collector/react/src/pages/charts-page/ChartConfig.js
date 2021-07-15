@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Line} from 'react-chartjs-2';
+import {Line, Bar, Doughnut} from 'react-chartjs-2';
 import {firestore} from '../../firebase/firebase.js';
 
 const dates = [];
@@ -75,7 +75,7 @@ const state = {
   ]
 }
 
-export default class AvgTempLineChart extends Component {
+export default class AvgTempLineChart extends React.Component {
   render() {
     return (
       <div>
@@ -94,6 +94,23 @@ export default class AvgTempLineChart extends Component {
             }
           }}
         />
+        <p>Bar chart</p>
+        <Bar
+          className="average-temp-chart"
+          data={state}
+          options={{
+            title:{
+              display:true,
+              text:'Temperatures',
+              fontSize:20
+            },
+            legend:{
+              display:true,
+              position:'right'
+            }
+          }}
+        />
+
       </div>
     );
   }
