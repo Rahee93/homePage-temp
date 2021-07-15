@@ -25,7 +25,6 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 export const firestore = firebase.firestore();
-export const db = firebase.database();
 
 export const loadSchoolList = async () => {
   let schoolListSnapShot;

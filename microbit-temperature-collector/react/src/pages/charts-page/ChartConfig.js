@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {Line} from 'react-chartjs-2';
-import {db} from '../../firebase/firebase.js';
+import {firestore} from '../../firebase/firebase.js';
 
 const dates = [];
 const temps = [];
 var entry;
-const tempsRef = db.collection('temperature-collector-temperature-data');
+const tempsRef = firestore.collection('temperature-collector-temperature-data');
 const sortJson = require('sort-keys');
 const options = {ignoreCase: true, reverse: false, depth: 1};
 const school_ID = '566'; 
