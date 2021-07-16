@@ -358,6 +358,9 @@ class UploadDataPage extends React.Component {
           InputLabelProps={{
             shrink: true,
           }}
+          inputProps={{
+            max: moment().format('YYYY-MM-DD')
+          }}        
           onChange={this.onDateChange}
           className='UploadDataPage-content-step-action'
         />
