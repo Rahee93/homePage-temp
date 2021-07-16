@@ -5,7 +5,6 @@
 import React from "react";
 import Header from "../../components/header/Header";
 import ScrollTop from "../../components/scroll-top/ScrollTop";
-import Footer from "../../components/footer/Footer";
 
 import "./ContactUsPage.scss";
 
@@ -27,7 +26,6 @@ const ContactUsPage = () => {
         <p>We appreciate your help!</p>
       </div>
 
-      <Footer />
       <ScrollTop />
     </div>
   );

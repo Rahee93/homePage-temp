@@ -18,7 +18,6 @@ import ImageSlide from "../../components/image-slide-section/ImageSlide";
 import AboutUs from "../../components/about-us-section/AboutUs";
 import SmallBanner from "../../components/small-banner/SmallBanner";
 import GallerySection from "../../components/gallery-section/GallerySection";
-import Footer from "../../components/footer/Footer";
 import GetStarted from "../../components/get-started-section/GetStarted";
 import MapJournal from "../../components/map-journal-section/MapJournal";
 import BackToTop from "../../components/scroll-top/ScrollTop";
@@ -45,7 +44,6 @@ const HomePage = ({ fetchSectionsStartAsync }) => {
       <GetStarted />
       <SmallBanner url={banner3} />
       <GallerySection />
-      <Footer />
       <BackToTop />
     </div>
   );

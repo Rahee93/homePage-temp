@@ -1,7 +1,6 @@
 import React from "react";
 import { StylesProvider } from '@material-ui/core/styles';
 import Header from "../../components/header/Header";
-import Footer from "../../components/footer/Footer";
 import ScrollTop from "../../components/scroll-top/ScrollTop";
 import PropTypes from 'prop-types';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
@@ -430,7 +429,6 @@ class UploadDataPage extends React.Component {
               </Grid>
               
           </div>
-          <Footer />
           <ScrollTop />
       </StylesProvider>
   }
