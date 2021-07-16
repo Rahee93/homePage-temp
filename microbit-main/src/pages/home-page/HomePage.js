@@ -10,13 +10,14 @@ import Footer from "../../components/footer/Footer";
 import BackToTop from "../../components/scroll-top/ScrollTop";
 import EmbededPage from "../../components/embeded-page/EmbededPage"
 
+
 const HomePage = () => {
 
   return (
     <>
       <Header />
       <EmbededPage src="https://microbit.org/get-started/home-learning/"/>
-      {/* <Footer /> */}
+      <Footer />
       <BackToTop />
     </>
   );
