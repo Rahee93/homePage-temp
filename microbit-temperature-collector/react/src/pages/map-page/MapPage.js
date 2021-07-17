@@ -95,7 +95,7 @@ class MapPage extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.schoolData.schoolList.length !== prevState.schoolData.schoolList.length) {
+    if (Object.keys(this.state.schoolData.schoolList).length !== Object.keys(prevState.schoolData.schoolList).length) {
       // need to wait map to load
       if (this.map && this.maps) {
         this.schoolsToMarkers();
