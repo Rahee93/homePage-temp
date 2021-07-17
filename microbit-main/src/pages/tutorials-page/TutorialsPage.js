@@ -35,5 +35,4 @@ const TutorialsPage = () => {
     );
 };
 
-
 export default TutorialsPage;
