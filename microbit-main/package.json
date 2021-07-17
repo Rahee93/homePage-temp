@@ -1,6 +1,6 @@
 {
   "name": "microbit-main",
-  "homepage": "http:///microbit-main",
+  "homepage": "/microbit-main",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
