@@ -3670,6 +3670,8 @@
     "School_Number" : 204901,
     "School_Website" : "https://southmarchps.ocdsb.ca/",
     "Street" : "1032 Klondike Rd",
+    "lat" : 45.3575211,
+    "lng" : -75.9279001,
     "max_temp" : -4,
     "min_temp" : 15
   }, {
@@ -4208,6 +4210,8 @@
     "School_Number" : 223930,
     "School_Website" : "https://goulbournms.ocdsb.ca/",
     "Street" : "2176 Huntley Rd RR#3",
+    "lat" : 45.2302028,
+    "lng" : -75.9039116,
     "max_temp" : -4,
     "min_temp" : 15
   }, {
@@ -5027,25 +5031,12 @@
     "Phone" : "613-546-1737",
     "Postal_Code" : "K7L",
     "Province" : "Ontario",
-    "School_Name" : "La Salle Secondary School",
+    "School_Name" : "La Salle Intermediate & Secondary School",
     "School_Number" : 920592,
     "School_Website" : "https://lasalle.limestone.on.ca/",
     "Street" : "773 Highway 15",
     "lat" : 44.2533419,
     "lng" : -76.4587141,
-    "max_temp" : -4,
-    "min_temp" : 15
-  }, {
-    "Board_Language" : "English",
-    "Board_Name" : "Limestone DSB",
-    "City" : "Kingston",
-    "Phone" : "613-546-9733",
-    "Postal_Code" : "K7L",
-    "Province" : "Ontario",
-    "School_Name" : "LaSalle Intermediate School Intermediate School",
-    "School_Number" : 52045,
-    "School_Website" : "https://lasalle.limestone.on.ca/",
-    "Street" : "773 Highway 15 R.R. #2",
     "max_temp" : -4,
     "min_temp" : 15
   }, {
@@ -5104,6 +5095,8 @@
     "School_Number" : 449873,
     "School_Website" : "http://polsonpark.limestone.on.ca/",
     "Street" : "165 Robert Wallace Dr",
+    "lat" : 44.235128,
+    "lng" : -76.5326783,
     "max_temp" : -4,
     "min_temp" : 15
   }, {

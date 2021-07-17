@@ -9,7 +9,7 @@ function Footer() {
         <div className="row">
           {/* Column1 */}
           <div className="col">
-            <h4>TerryFox</h4>
+            <h4>Micro:bit Website</h4>
               613-000-0000<br />
               Ontario, Ottawa<br />
               123 Street South Keys<br />
@@ -39,7 +39,7 @@ function Footer() {
         <div className="row">
           <p className="col-sm">
             &copy;{new Date().getFullYear()} 
-            Terry Fox | 
+            Micro:bit Website | 
             All rights reserved |
             <Link to="/">Terms Of Service</Link> | 
             <Link to="/">Privacy</Link>

@@ -43,4 +43,20 @@ export const loadSchoolList = async () => {
   }
 }
 
+export const loadTemperatureData= async () => {
+  let temperatureDataSnapshot;
+  if(window.top && window.top.temperatureDataSnapshot && window.top.temperatureDataSnapshot.docs) {
+    return window.top.temperatureDataSnapshot;
+  } else {
+    temperatureDataSnapshot = await firestore
+      .collection("temperature-collector-temperature-data")
+      .get();
+    if(window.top) {
+      // store the temperatureData so do not need to fetch every time
+      window.top.temperatureDataSnapshot = temperatureDataSnapshot
+    }
+    return temperatureDataSnapshot;
+  }
+}
+
 export default firebase;
