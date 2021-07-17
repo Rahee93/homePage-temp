@@ -101,7 +101,13 @@ class MapPage extends Component {
         this.schoolsToMarkers();
         this.panToOttawaCenter();
       }
-    } else if (this.state.currentSelectedSchoolId !== prevState.currentSelectedSchoolId) {
+    } else if(Object.keys(this.state.temperatureData.temperatureDataBySchool).length !== Object.keys(prevState.temperatureData.temperatureDataBySchool).length) {
+       // need to wait map to load
+      if (this.map && this.maps) {
+        this.schoolsToMarkers();
+        this.panToOttawaCenter();
+      }
+    }else if (this.state.currentSelectedSchoolId !== prevState.currentSelectedSchoolId) {
       if (this.map) {
         // before select a new school, unselect pre selected school
         this.unSelectSchool(prevState.currentSelectedSchoolId);
