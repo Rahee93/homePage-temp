@@ -11,7 +11,6 @@ import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import Footer from "../../components/footer/Footer";
 import ScrollTop from "../../components/scroll-top/ScrollTop";
 import { selectGallery } from "../../redux/sections/sections.selectors";
 
@@ -77,7 +76,7 @@ const GalleryPage = ({ section }) => {
           </Container>
         )}
       </div>
-      <Footer />
+
       <ScrollTop />
     </div>
   );
