@@ -32,7 +32,9 @@ const TutorialsPage = () => {
                         </a> 
                     </div>
                 <Footer />
+
             </div>  
+            <Footer />
         </div>
     );
 };

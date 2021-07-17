@@ -6,7 +6,6 @@
 import React from "react";
 
 import Header from "../../components/header/Header";
-import Footer from "../../components/footer/Footer";
 import BackToTop from "../../components/scroll-top/ScrollTop";
 
 const HomePage = () => {
@@ -15,7 +14,6 @@ const HomePage = () => {
     <>
       <Header />
       <div style={{flex: '1 1 auto'}}>test home page</div>
-      <Footer />
       <BackToTop />
     </>
   );
