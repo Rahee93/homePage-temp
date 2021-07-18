@@ -5,15 +5,31 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+ 
 
   &-title {
     margin: 20px;
+    font-size: 5rem;
+    background-image: linear-gradient(
+      to right bottom,
+      rgba(79, 150, 192, 0.2),
+      rgba(143, 56, 56, 0.6)
+    ),url("https://cdn5.vectorstock.com/i/thumb-large/43/69/pattern-with-pink-stars-on-dark-sky-background-vector-24544369.jpg");
+    color: #E0BBE4;
     font-family: Boogaloo;
+    text-transform: uppercase;
+  }
+  &-subtitle {
+    margin: auto;
+    font-size: 3rem;
+    color: #957DAD;
+   
   }
 
   &-content {
     color: #252525;
     max-width: 850px;
     text-align: left;
+    font-size: 1.2rem;
   }
 }

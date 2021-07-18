@@ -15,8 +15,11 @@ const AboutUs = ({ section }) => {
     <div className="section AboutUs mt-4">
       {section && (
         <>
-          <h1 className="AboutUs-title">{section.name}</h1>
-          <div className="AboutUs-content p-3">
+          <h1 className="AboutUs-title">Micro:bit Main Page!</h1>
+          <p />
+          <p />
+          <h1 className="AboutUs-subtitle">{section.name}</h1>
+          <div className="AboutUs-content p-3" >
             {section.sectionData.map((para, index) => (
               <p key={index}>{para.content}</p>
             ))}

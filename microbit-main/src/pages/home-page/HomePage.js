@@ -16,6 +16,7 @@ import banner3 from "../../assets/photo/banner3.jpg";
 
 
 
+
 const HomePage= ({ fetchSectionsStartAsync }) => {
   useEffect(() => {
     fetchSectionsStartAsync();
@@ -25,7 +26,7 @@ const HomePage= ({ fetchSectionsStartAsync }) => {
     <div className="HomePage">
       <Header />
       <SmallBanner url={banner1} />
-      <AboutUs/>
+      <AboutUs/> <img src="https://lh3.googleusercontent.com/proxy/kI_WxQ6SXmXd6XHdS6HCaheN6D8Ok3lFV0qSloaj2hOPew5LEeI-BczR1bTIadzSOGKlYRXqoMVnier6sAziv0ffYaWJUU63oi5gpHECV3gIoehSO6QRnvfZ1ag" />
       <SmallBanner url={banner3} />
       <Footer />
       <BackToTop />

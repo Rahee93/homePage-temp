@@ -21,7 +21,7 @@ export const fetchSectionsFailure = (errorMessage) => ({
 
 export const fetchSectionsStartAsync = () => {
   return (dispatch) => {
-    const collectionRef = firestore.collection("sections"); // 1. create a collection ref
+    const collectionRef = firestore.collection("section-main"); // 1. create a collection ref
     dispatch(fetchSectionsStart()); // 2. dispatch an action (which will switch isFetching: true)
 
     // 3. begin async request
