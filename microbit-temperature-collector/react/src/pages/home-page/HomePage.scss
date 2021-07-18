@@ -1,3 +1,36 @@
 .HomePage {
   height: auto;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(
+    to right bottom,
+    rgba(107, 105, 114, 0.2),
+    rgba(28, 15, 107, 0.6)
+  ),
+    url("https://images.pexels.com/photos/72161/pexels-photo-72161.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 auto;
+    width: 100vw;
+    height: 300px;
+
+    &-title {
+      margin: auto;
+      font-size: 6rem;
+      color: #fff;
+      text-transform: uppercase;
+      padding: 5%;
+    }
+    &-content {
+      padding-top: 100px;
+      max-width: 730px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    &-vid-btn{
+      text-align: right;
+    }
+  
+
 }
+
