@@ -27,36 +27,87 @@ firebase.initializeApp(firebaseConfig);
 export const firestore = firebase.firestore();
 
 export const loadSchoolList = async () => {
-  let schoolListSnapShot;
-  if(window.top && window.top.schoolListSnapShot && window.top.schoolListSnapShot.docs) {
-    return window.top.schoolListSnapShot;
-  } else {
-    schoolListSnapShot = await firestore
-      .collection("temperature-collector-school-list")
-      .orderBy("School_Name", "asc")
-      .get();
-    if(window.top) {
-      // store the school list data so do not need to fetch every time
-      window.top.schoolListSnapShot = schoolListSnapShot
+  try {
+    const locaData = getDataFromLocal('schoolListData', true);
+    if(locaData) {
+      return locaData;
+    } else {
+      const schoolListData = {};
+      const schoolListSnapshot = await firestore
+        .collection("temperature-collector-school-list")
+        .orderBy("School_Name", "asc")
+        .get();
+  
+      schoolListSnapshot.forEach((doc) => {
+        schoolListData[doc.id] = doc.data();
+      });
+      // store schoolListData to local storage because it will not change frequently
+      saveDataToLocal('schoolListData', schoolListData, true);
+      return schoolListData;
     }
-    return schoolListSnapShot;
+  } catch(error) {
+    console.error(error);
+    return {};
   }
 }
 
 export const loadTemperatureData= async () => {
-  let temperatureDataSnapshot;
-  if(window.top && window.top.temperatureDataSnapshot && window.top.temperatureDataSnapshot.docs) {
-    return window.top.temperatureDataSnapshot;
-  } else {
-    temperatureDataSnapshot = await firestore
-      .collection("temperature-collector-temperature-data")
-      .get();
-    if(window.top) {
-      // store the temperatureData so do not need to fetch every time
-      window.top.temperatureDataSnapshot = temperatureDataSnapshot
+  try {
+    const locaData = getDataFromLocal('temperatureData', false);
+    if(locaData) {
+      return locaData;
+    } else {
+      const temperatureData = {};
+      const temperatureDataSnapshot = await firestore
+        .collection("temperature-collector-temperature-data")
+        .get();
+
+      temperatureDataSnapshot.forEach((doc) => {
+        temperatureData[doc.id] = doc.data();
+      });
+      // do not store temperatureData to local storage because it will change frequently
+      saveDataToLocal('temperatureData', temperatureData, false);
+      return temperatureData;
     }
-    return temperatureDataSnapshot;
+  } catch(error) {
+    console.error(error);
+    return {};
   }
 }
 
+const getDataFromLocal = (key, useLocalStorage) => {
+  if(useLocalStorage && window.localStorage && window.localStorage.getItem(key)) {
+    return JSON.parse(window.localStorage.getItem(key));
+  }
+  if(window.sessionStorage && window.sessionStorage.getItem(key)) {
+    return JSON.parse(window.sessionStorage.getItem(key));
+  }
+  if(window.top && window.top[key]) {
+    return window.top[key];
+  }
+  return null;
+}
+
+const saveDataToLocal = (key, value, useLocalStorage) => {
+  if(useLocalStorage && window.localStorage) {
+    try {
+      window.localStorage.setItem(key, JSON.stringify(value));
+      return;
+    } catch(error) {
+      console.error(error);
+    }
+  }
+  if(window.sessionStorage) {
+    try {
+      window.sessionStorage.setItem(key, JSON.stringify(value));
+      return;
+    } catch(error) {
+      console.error(error);
+    }
+  }
+  if(window.top) {
+    window.top[key] = value;
+    return;
+  }
+}
 export default firebase;

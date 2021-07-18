@@ -1,0 +1,34 @@
+.schoolDetailsSlideOut {
+  width: 350px;
+  &-section {
+    padding: 24px;
+  }
+  &-accordion {
+    border: 1px solid rgba(0, 0, 0, .125);
+    box-shadow: none;
+    &:not(:last-child) {
+      border-bottom: 0,
+    }
+    &:before {
+      display: none;
+    }
+    &.Mui-expanded {
+      margin: auto;
+    }
+    &-summary{
+      border-bottom: 1px solid rgba(0, 0, 0, .125);
+      margin-bottom: -1px;
+      min-height: 56px;
+      &.Mui-expanded {
+        min-height: 56px;
+      }
+      .MuiAccordionSummary-content {
+        flex-flow: column;
+        padding-right: 24px;
+        &.Mui-expanded{
+          margin: 12px 0;
+        }
+      }
+    }
+  }
+}
