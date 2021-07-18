@@ -17,7 +17,7 @@ import avatar from "../../assets/photo/avatar.png";
 import { mapData } from "../../assets/data/mapData";
 var turf = require("@turf/turf");
 
-mapboxgl.accessToken = process.env.MAP_ACCESS_TOKEN;
+mapboxgl.accessToken = "pk.eyJ1IjoibWljcm9iaXR3ZWJzaXRlIiwiYSI6ImNrcXB1dXFmMzFiNmkyb3BxM3E5a2cxbTcifQ.2k1fRe92B1K2BR0rR4xe0Q";
 
 const Map = ({ counter }) => {
   const mapContainerRef = useRef(null);

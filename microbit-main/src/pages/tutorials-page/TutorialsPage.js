@@ -31,8 +31,6 @@ const TutorialsPage = () => {
                         </div>
                         </a> 
                     </div>
-                <Footer />
-
             </div>  
             <Footer />
         </div>
