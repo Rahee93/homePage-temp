@@ -10,7 +10,6 @@ const sortJson = require('sort-keys');
 const options = {ignoreCase: true, reverse: false, depth: 1};
 const school_ID = '566'; 
 
-
 tempsRef.doc(school_ID).get().then((snapshot) => {
   var temperaturesForSchool = snapshot.data();
   const sortedEntry = sortJson(temperaturesForSchool, options); 
@@ -94,7 +93,9 @@ export default class AvgTempLineChart extends React.Component {
             }
           }}
         />
+        <br></br>
         <p>Bar chart</p>
+
         <Bar
           className="average-temp-chart"
           data={state}
