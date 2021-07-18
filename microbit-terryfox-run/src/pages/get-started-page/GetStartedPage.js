@@ -12,7 +12,6 @@ import Row from "react-bootstrap/Row";
 import Button from "@material-ui/core/Button";
 
 import Header from "../../components/header/Header";
-import Footer from "../../components/footer/Footer";
 import ScrollTop from "../../components/scroll-top/ScrollTop";
 import { selectSteps } from "../../redux/sections/sections.selectors";
 import "./GetStartedPage.scss";
@@ -84,7 +83,6 @@ const GetStartedPage = ({ section }) => {
         </Container>
       </div>
 
-      <Footer />
       <ScrollTop />
     </div>
   );

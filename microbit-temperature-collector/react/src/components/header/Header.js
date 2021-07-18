@@ -6,6 +6,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
+import SvgIcon from '@material-ui/core/SvgIcon';
 import logo from "../../assets/photo/microbit-icon.png";
 
 import "./Header.scss";
@@ -13,7 +14,7 @@ import "./Header.scss";
 const Header = () => {
   return (
     <div className="header">
-      <Navbar className="navbar" bg="" expand="lg" name="top">
+      <Navbar className="navbar" expand="lg" name="top">
         <Navbar.Brand className="navbar-headers">
           <Link to="/" className="navbar-headers">
             <div className="navbar-headers__image"></div>
@@ -26,16 +27,16 @@ const Header = () => {
             <Link to="/" className="navbar-nav__item p-2">
               Home
             </Link>
-            <Link to="/" className="navbar-nav__item p-2">
+            <Link to="/get-started" className="navbar-nav__item p-2">
               Get Started
             </Link>
-            <Link to="/" className="navbar-nav__item p-2">
-              Upload your data
+            <Link to="/upload-data" className="navbar-nav__item p-2">
+               Upload Temperature Data
             </Link>
-            <Link /*to="/dictionary"*/ className="navbar-nav__item p-2">
+            <Link to="/map" className="navbar-nav__item p-2">
               Map
             </Link>
-            <Link to="/" className="navbar-nav__item p-2">
+            <Link to="/charts" className="navbar-nav__item p-2">
               Charts
             </Link>
           </Nav>

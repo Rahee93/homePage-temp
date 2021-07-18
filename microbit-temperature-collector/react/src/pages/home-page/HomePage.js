@@ -5,7 +5,6 @@
 
 import React from "react";
 import Header from "../../components/header/Header";
-import Footer from "../../components/footer/Footer";
 import BackToTop from "../../components/scroll-top/ScrollTop";
 import "./HomePage.scss";
 import banner3 from "../../assets/photo/banner3.jpg";
@@ -27,10 +26,10 @@ const HomePage = () => {
         sensor inside the processor, providing an approximated reading for the ambient temperature. 
         <p></p>
         The micro:bit temperature sensor is very easy and convenient for kids to use. 
-        Start by downloading the temperature collector program and upload it into the microbit device. Then you can enter the temperature data, date and location into the device.
+        Start by downloading the temperature collector program and upload it into the microbit device. Then you can start to collect the temperatures for your school.
         <p></p>
         Micro:bit temperature collector is a very interesting little 
-        device for kids to learn and encourage them do more outdoor activities. Kids can have fun by experiencing how the micro:bit is displaying the temperature around them.  
+        device for kids to learn and encourage them do more outdoor activities. Kids can have fun by experiencing how the micro:bit is displaying the temperature around them and how it collects the temperatures of their schools.  
       </p>
       </div>
       <div className="HomePage-vid">
@@ -39,8 +38,6 @@ const HomePage = () => {
       </video>
       </div>
       <BackToTop/>
-      <Footer />
-     
     </>
   );
 };

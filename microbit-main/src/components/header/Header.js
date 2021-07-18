@@ -13,7 +13,7 @@ import "./Header.scss";
 const Header = () => {
   return (
     <div className="header">
-      <Navbar className="navbar" bg="white" expand="lg" name="top">
+      <Navbar className="navbar" expand="lg" name="top">
         {/* <Navbar.Brand className="navbar-headers">
           <Link to="/" className="navbar-headers">
             <div className="navbar-headers__image"></div>
@@ -27,7 +27,7 @@ const Header = () => {
               Home
             </Link>
             <Link to="/terry-fox-run" className="navbar-nav__item p-2">
-              TerryFox Run
+              Terry Fox Run
             </Link>
             <Link to="/temperature-collector" className="navbar-nav__item p-2">
               Temperature Collector
@@ -38,7 +38,7 @@ const Header = () => {
             <Link to="/tutorials" className="navbar-nav__item p-2">
               Tutorials
             </Link>
-            <Link /*to="/contact-us"*/ className="navbar-nav__item p-2">
+            <Link to="/contact-us" className="navbar-nav__item p-2">
               Contact Us
             </Link>
           </Nav>

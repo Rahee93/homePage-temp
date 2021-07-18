@@ -15,7 +15,6 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 import Button from "@material-ui/core/Button";
 import Header from "../../components/header/Header";
-import Footer from "../../components/footer/Footer";
 import { firestore } from "../../firebase/firebase";
 
 import "./MicrobitSyncPage.scss";
@@ -87,7 +86,7 @@ const MicrobitSyncPage = () => {
 
       readLoop();
     } catch (error) {
-      window.location.replace("404/cancel");
+      window.location.replace("404/errorpage");
     }
   };
   return (
@@ -126,7 +125,6 @@ const MicrobitSyncPage = () => {
           </p>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };
