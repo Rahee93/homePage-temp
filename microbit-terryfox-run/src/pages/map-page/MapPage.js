@@ -22,7 +22,6 @@ import Header from "../../components/header/Header";
 import { firestore } from "../../firebase/firebase";
 import { Link } from "react-router-dom";
 
-import Footer from "../../components/footer/Footer";
 import ScrollTop from "../../components/scroll-top/ScrollTop";
 import "./MapPage.scss";
 import { fetchCounterStartAsync } from "../../redux/counter/counter.actions";
@@ -80,7 +79,6 @@ const MapPage = ({ fetchCounterStartAsync, counter, newestTimeUpdates }) => {
           <Map className="MapPage-content__map" counter={counter} />
         </div>
       )}
-      <Footer />
       <ScrollTop />
     </div>
   );

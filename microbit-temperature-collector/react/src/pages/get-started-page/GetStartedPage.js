@@ -13,7 +13,6 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { Link } from "react-router-dom";
 import Header from "../../components/header/Header";
-import Footer from "../../components/footer/Footer";
 import ScrollTop from "../../components/scroll-top/ScrollTop";
 import DoneAllIcon from '@material-ui/icons/DoneAll';
 import green from '@material-ui/core/colors/green';
@@ -119,7 +118,6 @@ const GetStartedPage = () => {
             </Paper>
           )}
         </div>
-    <Footer />
       <ScrollTop />
     </StylesProvider>
   );
