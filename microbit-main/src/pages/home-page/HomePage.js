@@ -26,7 +26,7 @@ const HomePage= ({ fetchSectionsStartAsync }) => {
     <div className="HomePage">
       <Header />
       <SmallBanner url={banner1} />
-      <AboutUs/> <img src="https://lh3.googleusercontent.com/proxy/fySn-eVwg_y4mVPucEMo2QhlmO_nDPsZM3CFMZ_Sz-A-LV8-LmaJfZA8p8XtsCRsm-GLiWa7dGu4iVrwmYN8li--YW-djC9xmhxiUK3unh6fdNXMTBgD-Cb9Mxw" />
+      <AboutUs/> <img src="https://firebasestorage.googleapis.com/v0/b/microbit-terry-fox-90137.appspot.com/o/microbit.gif?alt=media&token=ba381b35-a4cb-4563-87be-be12ef69c479"  height="400" />
       <SmallBanner url={banner3} />
       <Footer />
       <BackToTop />
