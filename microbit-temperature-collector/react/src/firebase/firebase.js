@@ -110,4 +110,9 @@ const saveDataToLocal = (key, value, useLocalStorage) => {
     return;
   }
 }
+export const convertCollectionsSnapshotToMap = (collections) => {
+  let transformedCollection = [];
+  collections.docs.forEach((doc) => transformedCollection.push(doc.data()));
+  return transformedCollection;
+};
 export default firebase;

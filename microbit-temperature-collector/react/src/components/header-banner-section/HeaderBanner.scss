@@ -1,0 +1,40 @@
+.HeaderBanner {
+    height: auto;
+    width: 100%;
+    &-banner {
+        padding: 0;
+        &__title {
+            // margin: auto;
+            font-size: 6rem;
+            color: #fff;
+            text-transform: uppercase;
+            margin-left: -40%;
+            padding-top: 20px;
+            margin-top: 0;
+        }
+
+        &__button {
+            margin-left: -40%;
+            margin-bottom: 5px;
+            background-color: rgb(241, 235, 235);
+            font-family: Boogaloo;
+            border: red;
+            color: rgb(0, 0, 0);
+            padding: 10px 32px;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        &__button:hover {
+            margin-left: -40%;
+            margin-bottom: 5px;
+            background-color: #2ceb1b;
+            font-family: Boogaloo;
+            border: none;
+            color: #fff;
+            padding: 10px 32px;
+            font-size: 18px;
+            font-weight: 400;
+        }
+    }
+}
